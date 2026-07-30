@@ -1,0 +1,43 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout
+  title="Private Tutoring | Darko Dekan"
+  description="Individual online tutoring in mathematics and programming."
+>
+  <Header />
+
+  <main id="main-content" class="app-layout flex-1">
+    <section class="py-10">
+      <h1 class="text-3xl font-bold sm:text-4xl">
+        Private tutoring
+      </h1>
+
+      <p class="mt-4 max-w-2xl text-lg text-foreground/75">
+        Individual online lessons in mathematics and programming.
+        Detailed tutoring options will be available here soon.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href="mailto:darko.dekan@gmail.com"
+          class="bg-accent text-accent-foreground rounded-lg px-5 py-3 font-medium"
+        >
+          Contact by email
+        </a>
+
+        <a
+          href="https://wa.me/381621005941"
+          class="border-border rounded-lg border px-5 py-3 font-medium"
+        >
+          Contact on WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
