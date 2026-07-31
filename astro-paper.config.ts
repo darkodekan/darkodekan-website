@@ -30,12 +30,13 @@ export default defineAstroPaperConfig({
   },
   socials: [
     { name: "github",   url: "https://github.com/darkodekan" },
-    { name: "x",        url: "https://x.com/darkodean" },
-    { name: "linkedin", url: "https://www.linkedin.com/in/darkodekan/" },
+    { name: "linkedin", url: "www.linkedin.com/in/darko-dekan-8211b3368" },
     { name: "mail",     url: "mailto:darkodekan@gmail.com" },
+    { name: "whatsapp", url: "https://wa.me/?text=381621005941" },
+
   ],
   shareLinks: [
-    { name: "whatsapp", url: "https://wa.me/?text=381621005941" },
+    { name: "whatsapp", url: "https://wa.me/?text=" },
     { name: "facebook", url: "https://www.facebook.com/sharer.php?u=" },
     { name: "x",        url: "https://x.com/intent/post?url=" },
     { name: "telegram", url: "https://t.me/share/url?url=" },

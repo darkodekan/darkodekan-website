@@ -2,6 +2,7 @@
 
 @layer base {
   /* ===== Override default Tailwind Typography styles ===== */
+
   .app-prose {
     @apply prose;
 
@@ -100,6 +101,7 @@
     @apply outline-border flex border bg-(--shiki-light-bg) text-(--shiki-light) [&_span]:text-(--shiki-light);
   }
 
+
   html[data-theme="dark"] .astro-code {
     @apply bg-(--shiki-dark-bg) text-(--shiki-dark) [&_span]:text-(--shiki-dark);
   }
@@ -119,5 +121,20 @@
     .highlighted-word {
       @apply border-border rounded-sm border px-0.5 py-px;
     }
+
+
   }
+
+
+  .prose .katex-display,
+.prose .katex-display > .katex {
+  color: var(--foreground) !important;
+}
+
+.prose .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 0.25rem;
+}
+
 }

@@ -52,16 +52,16 @@ const formatDate = (date: Date) =>
                 <article>
                   <a
                     href={getPostUrl(
-                      post.id,
-                      post.filePath,
-                      config.site.lang
+                        post.id,
+                        post.filePath,
+                        config.site.lang
                     )}
                     class="group inline-block"
-                  >
-                    <h2 class="text-2xl font-semibold group-hover:text-accent">
-                      {post.data.title}
+                    >
+                    <h2 class="text-accent text-2xl font-semibold decoration-dashed underline-offset-4 group-hover:underline">
+                        {post.data.title}
                     </h2>
-                  </a>
+                    </a>
 
                   <p class="mt-3 text-foreground/75">
                     {post.data.description}
