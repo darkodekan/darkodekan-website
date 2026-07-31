@@ -2,12 +2,12 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://astro-paper.pages.dev/",
+    url: "https://darkodekan.com/",
     title: "Darko Dekan",
     description: "My corner of the internet dedicated to pure mathematics, programming, and tutoring.",
     author: "Darko Dekan",
     profile: "https://darkodekan.com/about/",
-    ogImage: "default-og.jpg",
+    ogImage: "default-og.png",
     lang: "en",
     timezone: "Europe/Belgrade",
     dir: "ltr",
