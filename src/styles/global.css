@@ -36,3 +36,16 @@
 :target {
   scroll-margin-block: 1rem;
 }
+
+/* Fix KaTeX display equations in AstroPaper */
+:is(.app-prose, .prose) .katex-display,
+:is(.app-prose, .prose) .katex-display * {
+  color: var(--foreground) !important;
+  opacity: 1 !important;
+}
+
+:is(.app-prose, .prose) .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 0.5rem;
+}

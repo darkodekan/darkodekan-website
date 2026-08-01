@@ -126,15 +126,5 @@
   }
 
 
-  .prose .katex-display,
-.prose .katex-display > .katex {
-  color: var(--foreground) !important;
-}
-
-.prose .katex-display {
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding-block: 0.25rem;
-}
 
 }
