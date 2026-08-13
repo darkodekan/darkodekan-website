@@ -20,6 +20,7 @@ import { transformerFileName } from "./src/utils/transformers/fileName";
 import config from "./astro-paper.config";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import icon from "astro-icon";
 
 export default defineConfig({
   site: config.site.url,
@@ -29,6 +30,7 @@ export default defineConfig({
       filter: page =>
         config.features?.showArchives !== false || !page.endsWith("/archives/"),
     }),
+    icon(),
   ],
   i18n: {
     locales: ["en"],

@@ -10,6 +10,8 @@ import { getPostUrl } from "@/utils/getPostPaths";
 
 import config from "@/config";
 
+
+
 const allPosts = await getCollection("posts");
 
 const programmingPosts = getSortedPosts(allPosts).filter(post =>

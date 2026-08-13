@@ -3,9 +3,11 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Main from "@/components/Main.astro";
 import Footer from "@/components/Footer.astro";
+import { Icon } from "astro-icon/components";
 import {
   CONTACT,
   getEmailURL,
+  getViberURL,
   getWhatsAppURL,
 } from "@/config/contact";
 
@@ -13,10 +15,10 @@ const canonicalURL =
   "https://darkodekan.com/sr/privatni-casovi/programiranje/";
 
 const pageTitle =
-  "Privatni časovi programiranja – Python i Java | Darko Dekan";
+  "Privatni časovi programiranja – Python, Java, C/C++, Web Dev | Darko Dekan";
 
 const pageDescription =
-  "Individualni online časovi programiranja za početnike, učenike i studente. Python, Java, algoritmi, OOP, priprema ispita i praktični projekti.";
+  "Individualni online časovi programiranja za početnike, učenike i studente. Python, Java, C/C++, algoritmi, OOP, veb aplikacije, priprema ispita i praktični projekti.";
 
 const whatsappURL = getWhatsAppURL(
   "Zdravo Darko, zanimaju me privatni časovi programiranja."
@@ -70,23 +72,27 @@ const structuredData = {
   <Header />
 
   <Main
-    pageTitle="Privatni časovi programiranja"
+    pageTitle="Privatni časovi programiranja (Python, Java, C/C++, JavaScript, Web Dev)"
     pageDesc="Individualni online časovi prilagođeni vašem predznanju, fakultetskom programu i ciljevima."
-    class="app-prose"
-  >
-    <nav
-      aria-label="Putanja stranice"
-      class="not-prose text-muted-foreground mb-8 text-sm"
-    >
-      <a href="/" class="hover:text-accent">
-        Početna
-      </a>
+  class="app-prose pt-10 sm:pt-14"  >
 
-      <span aria-hidden="true"> / </span>
+    <figure class="not-prose mb-10">
+    <img
+      src="/images/privatni_casovi_banner.png"
+      alt="Individualni online časovi programiranja"
+      width="1200"
+      height="675"
+      loading="eager"
+      fetchpriority="high"
+      class="border-border w-full rounded-xl border object-cover"
+    />
 
-      <span>Privatni časovi programiranja</span>
-    </nav>
+    <figcaption class="text-muted-foreground mt-2 text-center text-sm">
+      Individualni online časovi Pythona, Jave, JavaScripta i C/C++. 062 100 5941.
+    </figcaption>
+  </figure>
 
+    
     <section
       class="not-prose border-border bg-muted/20 mb-10 rounded-xl border p-6 sm:p-8"
     >
@@ -102,23 +108,72 @@ const structuredData = {
         <li>✓ Praktični zadaci i projekti</li>
       </ul>
 
-      <div class="mt-7 flex flex-wrap gap-3">
-        <a
-          href={whatsappURL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="bg-accent text-accent-foreground rounded-md px-5 py-3 font-semibold"
-        >
-          Pošaljite WhatsApp poruku
-        </a>
+      <div
+  class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+  aria-label="Opcije za kontakt"
+>
+  <a
+    href={whatsappURL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="bg-accent text-accent-foreground hover:bg-accent/90 flex min-h-14 items-center justify-center gap-3 rounded-lg px-5 py-3 font-semibold transition-colors"
+    aria-label={`Pošaljite WhatsApp poruku na ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="simple-icons:whatsapp"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
 
-        <a
-          href={`tel:${CONTACT.phoneHref}`}
-          class="border-border hover:border-accent hover:text-accent rounded-md border px-5 py-3 font-semibold"
-        >
-          Pozovite {CONTACT.phoneDisplay}
-        </a>
-      </div>
+    <span class="text-left">
+      WhatsApp
+
+      <span class="block text-sm opacity-80">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+
+  <a
+    href={getViberURL()}
+    class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+    aria-label={`Kontaktirajte Darka preko Vibera na ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="simple-icons:viber"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
+
+    <span class="text-left">
+      Viber
+
+      <span class="block text-sm opacity-70">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+
+  <a
+    href={`tel:${CONTACT.phoneHref}`}
+    class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+    aria-label={`Pozovite Darka na ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="tabler:phone"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
+
+    <span class="text-left">
+      Pozovite
+
+      <span class="block text-sm opacity-70">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+</div>
     </section>
 
     <h2>Kome su časovi namenjeni?</h2>
@@ -139,53 +194,160 @@ const structuredData = {
     </ul>
 
     <h2>Programski jezici i oblasti</h2>
+<div class="not-prose my-7 grid gap-4 sm:grid-cols-2">
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="simple-icons:python"
+          class="size-6"
+          aria-hidden="true"
+        />
+      </span>
 
-    <div class="not-prose my-7 grid gap-4 sm:grid-cols-2">
-      <section class="border-border rounded-lg border p-5">
-        <h3 class="text-accent mt-0 text-xl font-semibold">
-          Python
-        </h3>
-
-        <p class="mb-0">
-          Osnove jezika, funkcije, klase, objektno orijentisano
-          programiranje, algoritmi, rad sa podacima, automatizacija,
-          Flask i Django.
-        </p>
-      </section>
-
-      <section class="border-border rounded-lg border p-5">
-        <h3 class="text-accent mt-0 text-xl font-semibold">
-          Java
-        </h3>
-
-        <p class="mb-0">
-          Osnove Jave, klase i objekti, nasleđivanje, interfejsi,
-          kolekcije, izuzeci, algoritmi i osnove Springa.
-        </p>
-      </section>
-
-      <section class="border-border rounded-lg border p-5">
-        <h3 class="text-accent mt-0 text-xl font-semibold">
-          Algoritmi i strukture podataka
-        </h3>
-
-        <p class="mb-0">
-          Analiza problema, složenost algoritama, rekurzija, sortiranje,
-          pretraga, liste, stekovi, redovi, stabla i grafovi.
-        </p>
-      </section>
-
-      <section class="border-border rounded-lg border p-5">
-        <h3 class="text-accent mt-0 text-xl font-semibold">
-          Fakultetski zadaci
-        </h3>
-
-        <p class="mb-0">
-          Priprema kolokvijuma i ispita, razumevanje postojećeg koda,
-          debagovanje i objašnjenje koncepata iz gradiva.
-        </p>
-      </section>
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        Python
+      </h3>
     </div>
+
+    <p class="mb-0">
+      Osnove jezika, funkcije, klase, objektno orijentisano
+      programiranje, algoritmi, rad sa podacima, automatizacija,
+      Flask i Django.
+    </p>
+  </section>
+
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="simple-icons:openjdk"
+          class="size-6"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        Java
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      Osnove Jave, klase i objekti, nasleđivanje, interfejsi,
+      kolekcije, izuzeci, algoritmi i osnove Springa.
+    </p>
+  </section>
+
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="simple-icons:cplusplus"
+          class="size-6"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        C/C++
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      Osnove jezika C i C++, pokazivači, rad sa memorijom, nizovi,
+      strukture, funkcije, klase i objekti, objektno orijentisano
+      programiranje, STL, algoritmi i strukture podataka.
+    </p>
+  </section>
+
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="simple-icons:javascript"
+          class="size-6"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        JavaScript
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      Osnove JavaScripta, funkcije, nizovi i objekti, DOM, događaji,
+      asinhrono programiranje, rad sa API-jima, frontend razvoj,
+      Node.js i osnove Reacta.
+    </p>
+  </section>
+
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="tabler:binary-tree-2"
+          class="size-7"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        Algoritmi i strukture podataka
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      Analiza problema, složenost algoritama, rekurzija, sortiranje,
+      pretraga, liste, stekovi, redovi, stabla i grafovi.
+    </p>
+  </section>
+
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="tabler:school"
+          class="size-7"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        Fakultetski zadaci
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      Priprema kolokvijuma i ispita, razumevanje postojećeg koda,
+      debagovanje i objašnjenje koncepata iz gradiva.
+    </p>
+  </section>
+</div>
 
     <h2>Kako izgledaju časovi?</h2>
 
@@ -247,30 +409,73 @@ const structuredData = {
         Odgovoriću vam sa predlogom načina rada i dostupnim terminima.
       </p>
 
-      <div class="flex flex-wrap gap-3">
-        <a
-          href={whatsappURL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="bg-accent text-accent-foreground rounded-md px-5 py-3 font-semibold"
-        >
-          Kontakt preko WhatsAppa
-        </a>
+    
+      <div
+  class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+  aria-label="Opcije za kontakt"
+>
+  <a
+    href={whatsappURL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="bg-accent text-accent-foreground hover:bg-accent/90 flex min-h-14 items-center justify-center gap-3 rounded-lg px-5 py-3 font-semibold transition-colors"
+    aria-label={`Pošaljite WhatsApp poruku na ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="simple-icons:whatsapp"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
 
-        <a
-          href={emailURL}
-          class="border-border hover:border-accent hover:text-accent rounded-md border px-5 py-3 font-semibold"
-        >
-          Pošaljite email
-        </a>
+    <span class="text-left">
+      WhatsApp
 
-        <a
-          href={`tel:${CONTACT.phoneHref}`}
-          class="border-border hover:border-accent hover:text-accent rounded-md border px-5 py-3 font-semibold"
-        >
-          Pozovite
-        </a>
-      </div>
+      <span class="block text-sm opacity-80">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+
+  <a
+    href={getViberURL()}
+    class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+    aria-label={`Kontaktirajte Darka preko Vibera na ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="simple-icons:viber"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
+
+    <span class="text-left">
+      Viber
+
+      <span class="block text-sm opacity-70">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+
+  <a
+    href={`tel:${CONTACT.phoneHref}`}
+    class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+    aria-label={`Pozovite Darka na ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="tabler:phone"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
+
+    <span class="text-left">
+      Pozovite
+
+      <span class="block text-sm opacity-70">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+</div>
     </section>
   </Main>
 

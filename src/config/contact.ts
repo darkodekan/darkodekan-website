@@ -14,3 +14,7 @@ export function getWhatsAppURL(message: string) {
 export function getEmailURL(subject: string) {
   return `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}`;
 }
+
+
+export const getViberURL = () =>
+  `viber://chat?number=${encodeURIComponent(CONTACT.phoneHref)}`;
