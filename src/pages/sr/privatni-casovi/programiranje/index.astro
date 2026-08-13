@@ -1,0 +1,278 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import {
+  CONTACT,
+  getEmailURL,
+  getWhatsAppURL,
+} from "@/config/contact";
+
+const canonicalURL =
+  "https://darkodekan.com/sr/privatni-casovi/programiranje/";
+
+const pageTitle =
+  "Privatni časovi programiranja – Python i Java | Darko Dekan";
+
+const pageDescription =
+  "Individualni online časovi programiranja za početnike, učenike i studente. Python, Java, algoritmi, OOP, priprema ispita i praktični projekti.";
+
+const whatsappURL = getWhatsAppURL(
+  "Zdravo Darko, zanimaju me privatni časovi programiranja."
+);
+
+const emailURL = getEmailURL(
+  "Privatni časovi programiranja"
+);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Privatni časovi programiranja",
+  description: pageDescription,
+  url: canonicalURL,
+  serviceType: "Online privatni časovi programiranja",
+  areaServed: {
+    "@type": "Country",
+    name: "Serbia",
+  },
+  provider: {
+    "@type": "Person",
+    name: CONTACT.name,
+    url: "https://darkodekan.com/",
+  },
+};
+---
+
+<Layout
+  lang="sr-Latn"
+  dir="ltr"
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalURL}
+>
+  <Fragment slot="head">
+    <link
+      rel="alternate"
+      hreflang="sr-Latn"
+      href={canonicalURL}
+    />
+
+    <meta property="og:locale" content="sr_RS" />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </Fragment>
+
+  <Header />
+
+  <Main
+    pageTitle="Privatni časovi programiranja"
+    pageDesc="Individualni online časovi prilagođeni vašem predznanju, fakultetskom programu i ciljevima."
+    class="app-prose"
+  >
+    <nav
+      aria-label="Putanja stranice"
+      class="not-prose text-muted-foreground mb-8 text-sm"
+    >
+      <a href="/" class="hover:text-accent">
+        Početna
+      </a>
+
+      <span aria-hidden="true"> / </span>
+
+      <span>Privatni časovi programiranja</span>
+    </nav>
+
+    <section
+      class="not-prose border-border bg-muted/20 mb-10 rounded-xl border p-6 sm:p-8"
+    >
+      <p class="m-0 text-lg leading-relaxed">
+        Učite programiranje uz individualna objašnjenja, praktične
+        primere i zadatke prilagođene vašem trenutnom nivou.
+      </p>
+
+      <ul class="mt-5 grid gap-2 sm:grid-cols-2">
+        <li>✓ Individualan rad</li>
+        <li>✓ Online časovi</li>
+        <li>✓ Priprema ispita</li>
+        <li>✓ Praktični zadaci i projekti</li>
+      </ul>
+
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a
+          href={whatsappURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-accent text-accent-foreground rounded-md px-5 py-3 font-semibold"
+        >
+          Pošaljite WhatsApp poruku
+        </a>
+
+        <a
+          href={`tel:${CONTACT.phoneHref}`}
+          class="border-border hover:border-accent hover:text-accent rounded-md border px-5 py-3 font-semibold"
+        >
+          Pozovite {CONTACT.phoneDisplay}
+        </a>
+      </div>
+    </section>
+
+    <h2>Kome su časovi namenjeni?</h2>
+
+    <p>
+      Časovi su namenjeni početnicima, srednjoškolcima, studentima i
+      svima koji žele da bolje razumeju programiranje ili unaprede
+      praktično znanje.
+    </p>
+
+    <ul>
+      <li>početnicima koji prvi put uče programiranje;</li>
+      <li>studentima koji pripremaju kolokvijum ili ispit;</li>
+      <li>učenicima kojima je potrebna pomoć sa školskim gradivom;</li>
+      <li>ljudima koji prelaze na novi programski jezik;</li>
+      <li>kandidatima koji se pripremaju za tehnički intervju;</li>
+      <li>studentima kojima je potrebno objašnjenje projekta.</li>
+    </ul>
+
+    <h2>Programski jezici i oblasti</h2>
+
+    <div class="not-prose my-7 grid gap-4 sm:grid-cols-2">
+      <section class="border-border rounded-lg border p-5">
+        <h3 class="text-accent mt-0 text-xl font-semibold">
+          Python
+        </h3>
+
+        <p class="mb-0">
+          Osnove jezika, funkcije, klase, objektno orijentisano
+          programiranje, algoritmi, rad sa podacima, automatizacija,
+          Flask i Django.
+        </p>
+      </section>
+
+      <section class="border-border rounded-lg border p-5">
+        <h3 class="text-accent mt-0 text-xl font-semibold">
+          Java
+        </h3>
+
+        <p class="mb-0">
+          Osnove Jave, klase i objekti, nasleđivanje, interfejsi,
+          kolekcije, izuzeci, algoritmi i osnove Springa.
+        </p>
+      </section>
+
+      <section class="border-border rounded-lg border p-5">
+        <h3 class="text-accent mt-0 text-xl font-semibold">
+          Algoritmi i strukture podataka
+        </h3>
+
+        <p class="mb-0">
+          Analiza problema, složenost algoritama, rekurzija, sortiranje,
+          pretraga, liste, stekovi, redovi, stabla i grafovi.
+        </p>
+      </section>
+
+      <section class="border-border rounded-lg border p-5">
+        <h3 class="text-accent mt-0 text-xl font-semibold">
+          Fakultetski zadaci
+        </h3>
+
+        <p class="mb-0">
+          Priprema kolokvijuma i ispita, razumevanje postojećeg koda,
+          debagovanje i objašnjenje koncepata iz gradiva.
+        </p>
+      </section>
+    </div>
+
+    <h2>Kako izgledaju časovi?</h2>
+
+    <ol>
+      <li>
+        Pre časa mi pošaljete oblast, zadatak ili materijal koji učite.
+      </li>
+
+      <li>
+        Proveravamo šta već razumete i gde se tačno pojavljuje problem.
+      </li>
+
+      <li>
+        Koncept objašnjavam na jednostavnijem, konkretnom primeru.
+      </li>
+
+      <li>
+        Zajedno rešavamo zadatke i proveravamo da li možete samostalno
+        primeniti postupak.
+      </li>
+    </ol>
+
+    <p>
+      Cilj časa nije samo da dobijete gotovo rešenje. Važno je da
+      razumete postupak i da posle časa možete samostalno rešavati
+      slične probleme.
+    </p>
+
+    <h2>Online način rada</h2>
+
+    <p>
+      Časovi se održavaju online uz razgovor, deljenje ekrana i
+      zajedničko pisanje koda. Možemo raditi u razvojnom okruženju koje
+      već koristite na fakultetu ili instalirati odgovarajuće alate pre
+      prvog časa.
+    </p>
+
+    <h2>Šta poslati pre prvog časa?</h2>
+
+    <p>U prvoj poruci napišite:</p>
+
+    <ul>
+      <li>koji programski jezik ili predmet učite;</li>
+      <li>koju školu ili fakultet pohađate, ako je relevantno;</li>
+      <li>koju oblast trenutno radite;</li>
+      <li>kada imate kolokvijum ili ispit;</li>
+      <li>koliko prethodnog iskustva imate.</li>
+    </ul>
+
+    <section
+      class="not-prose border-border mt-12 rounded-xl border p-6 sm:p-8"
+    >
+      <h2 class="mt-0 text-2xl font-semibold">
+        Zainteresovani ste za čas?
+      </h2>
+
+      <p class="mt-3 mb-6">
+        Pošaljite mi šta trenutno učite i šta želite da postignete.
+        Odgovoriću vam sa predlogom načina rada i dostupnim terminima.
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={whatsappURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-accent text-accent-foreground rounded-md px-5 py-3 font-semibold"
+        >
+          Kontakt preko WhatsAppa
+        </a>
+
+        <a
+          href={emailURL}
+          class="border-border hover:border-accent hover:text-accent rounded-md border px-5 py-3 font-semibold"
+        >
+          Pošaljite email
+        </a>
+
+        <a
+          href={`tel:${CONTACT.phoneHref}`}
+          class="border-border hover:border-accent hover:text-accent rounded-md border px-5 py-3 font-semibold"
+        >
+          Pozovite
+        </a>
+      </div>
+    </section>
+  </Main>
+
+  <Footer />
+</Layout>

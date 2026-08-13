@@ -12,6 +12,8 @@ type Props = {
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
+  lang?: string;
+  dir?: "ltr" | "rtl" | "auto";
 };
 
 const { site } = config;
@@ -21,6 +23,8 @@ const {
   description = site.description,
   ogImage = resolveDefaultOgImagePath(config),
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  lang = Astro.currentLocale ?? site.lang,
+  dir = site.dir ?? "ltr",
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
@@ -32,8 +36,8 @@ const rssHref = getRelativeLocaleUrl(
 
 <!doctype html>
 <html
-  dir={site.dir ?? "ltr"}
-  lang={Astro.currentLocale ?? site.lang}
+  dir={dir}
+  lang={lang}
   class="overflow-y-scroll scroll-smooth"
 >
   <head>

@@ -12,6 +12,8 @@ import { stripBase, stripLocale } from "@/utils/withBase";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
+
+
 const { site, features } = config;
 
 const locale = Astro.currentLocale ?? config.site.lang;
@@ -32,6 +34,10 @@ const isActive = (path: string) => {
   const pathArray = path.split("/").filter(p => p.trim());
   return currentPath === path || currentPathArray[0] === pathArray[0];
 };
+
+const isSerbianPage = Astro.url.pathname.startsWith("/sr/"); 
+const languageURL = isSerbianPage ? "/" : "/sr/privatni-casovi/programiranje/"; 
+const languageLabel = isSerbianPage ? "EN" : "SR";
 ---
 
 <a
@@ -106,6 +112,12 @@ const isActive = (path: string) => {
       Tutoring
     </a>
   </li>
+  <li class="col-span-2">
+  <a href="/sr/privatni-casovi/programiranje/">
+    Privatni časovi
+  </a>
+</li>
+  
         {
           features.showArchives && (
             <li class="col-span-2">
