@@ -1,0 +1,171 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import { Icon } from "astro-icon/components";
+import {
+  CONTACT,
+  getViberURL,
+  getWhatsAppURL,
+} from "@/config/contact";
+
+const canonicalURL =
+  "https://darkodekan.com/sr/privatni-casovi/matematika/";
+
+const pageTitle =
+  "Privatni časovi matematike online | Darko Dekan";
+
+const pageDescription =
+  "Individualni online časovi matematike za osnovce, srednjoškolce i studente. Pomoć u razumevanju gradiva, rešavanju zadataka i pripremi ispita.";
+
+const whatsappURL = getWhatsAppURL(
+  "Zdravo Darko, zanimaju me privatni časovi matematike."
+);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Privatni časovi matematike",
+  description: pageDescription,
+  url: canonicalURL,
+  serviceType: "Online privatni časovi matematike",
+  areaServed: { "@type": "Country", name: "Serbia" },
+  provider: {
+    "@type": "Person",
+    name: CONTACT.name,
+    url: "https://darkodekan.com/",
+  },
+};
+---
+
+<Layout
+  lang="sr-Latn"
+  dir="ltr"
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalURL}
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="sr-Latn" href={canonicalURL} />
+    <meta property="og:locale" content="sr_RS" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  <Header />
+
+  <Main
+    pageTitle="Privatni časovi matematike"
+    pageDesc="Individualna objašnjenja i rešavanje zadataka prilagođeni vašem predznanju, gradivu i cilju."
+    class="app-prose pt-10 sm:pt-14"
+  >
+    <figure class="not-prose mb-10">
+      <img
+        src="/images/privatni_casovi_math_banner.png"
+        alt="Individualni online časovi matematike"
+        width="1200"
+        height="675"
+        loading="eager"
+        fetchpriority="high"
+        class="border-border w-full rounded-xl border object-cover"
+      />
+      <figcaption class="text-muted-foreground mt-2 text-center text-sm">
+        Individualni online časovi matematike za učenike i studente. {CONTACT.phoneDisplay}.
+      </figcaption>
+    </figure>
+
+    <section class="not-prose border-border bg-muted/20 mb-10 rounded-xl border p-6 sm:p-8">
+      <p class="m-0 text-lg leading-relaxed">
+        Razumite matematiku kroz jasna objašnjenja, postupno rešavanje zadataka
+        i vežbu prilagođenu vašem trenutnom znanju.
+      </p>
+
+      <ul class="mt-5 grid gap-2 sm:grid-cols-2">
+        <li>✓ Individualan rad</li>
+        <li>✓ Online časovi</li>
+        <li>✓ Priprema kontrolnih, kolokvijuma i ispita</li>
+        <li>✓ Objašnjenje postupka, ne samo gotovog rešenja</li>
+      </ul>
+
+      <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" aria-label="Opcije za kontakt">
+        <a href={whatsappURL} target="_blank" rel="noopener noreferrer" class="bg-accent text-accent-foreground hover:bg-accent/90 flex min-h-14 items-center justify-center gap-3 rounded-lg px-5 py-3 font-semibold transition-colors">
+          <Icon name="simple-icons:whatsapp" class="size-6 shrink-0" aria-hidden="true" />
+          <span>WhatsApp<span class="block text-sm opacity-80">{CONTACT.phoneDisplay}</span></span>
+        </a>
+        <a href={getViberURL()} class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors">
+          <Icon name="simple-icons:viber" class="size-6 shrink-0" aria-hidden="true" />
+          <span>Viber<span class="block text-sm opacity-70">{CONTACT.phoneDisplay}</span></span>
+        </a>
+        <a href={`tel:${CONTACT.phoneHref}`} class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors">
+          <Icon name="tabler:phone" class="size-6 shrink-0" aria-hidden="true" />
+          <span>Pozovite<span class="block text-sm opacity-70">{CONTACT.phoneDisplay}</span></span>
+        </a>
+      </div>
+    </section>
+
+    <h2>Kome su časovi namenjeni?</h2>
+    <p>
+      Časovi su namenjeni osnovcima, srednjoškolcima, studentima i svima koji
+      žele da sistematično razumeju matematiku i sigurnije rešavaju zadatke.
+    </p>
+    <ul>
+      <li>učenicima kojima je potrebno objašnjenje školskog gradiva;</li>
+      <li>srednjoškolcima koji se pripremaju za kontrolni, maturu ili prijemni;</li>
+      <li>studentima koji spremaju kolokvijum ili ispit;</li>
+      <li>početnicima kojima nedostaju osnovni koncepti i sigurnost u radu;</li>
+      <li>svima koji žele pomoć pri rešavanju konkretnih zadataka.</li>
+    </ul>
+
+    <h2>Oblasti matematike</h2>
+    <div class="not-prose my-7 grid gap-4 sm:grid-cols-2">
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3"><span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"><Icon name="tabler:math-function" class="size-7" aria-hidden="true" /></span><h3 class="text-accent m-0 text-xl font-semibold">Algebra</h3></div>
+        <p class="mb-0">Jednačine i nejednačine, sistemi, polinomi, funkcije, logaritmi, eksponencijalne funkcije i nizovi.</p>
+      </section>
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3"><span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"><Icon name="tabler:chart-line" class="size-7" aria-hidden="true" /></span><h3 class="text-accent m-0 text-xl font-semibold">Analiza</h3></div>
+        <p class="mb-0">Limesi, neprekidnost, izvodi, integrali, redovi i osnovni pojmovi diferencijalnog računa.</p>
+      </section>
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3"><span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"><Icon name="tabler:triangle" class="size-7" aria-hidden="true" /></span><h3 class="text-accent m-0 text-xl font-semibold">Geometrija</h3></div>
+        <p class="mb-0">Ravan i prostor, trouglovi, krugovi, vektori, analitička geometrija i trigonometrija.</p>
+      </section>
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3"><span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"><Icon name="tabler:school" class="size-7" aria-hidden="true" /></span><h3 class="text-accent m-0 text-xl font-semibold">Fakultetska matematika</h3></div>
+        <p class="mb-0">Linearna algebra, diskretna matematika, verovatnoća, diferencijalne jednačine i priprema ispita.</p>
+      </section>
+    </div>
+
+    <h2>Kako izgledaju časovi?</h2>
+    <ol>
+      <li>Pre časa pošaljete oblast, zadatak ili materijal koji učite.</li>
+      <li>Utvrđujemo šta već razumete i gde se pojavljuje problem.</li>
+      <li>Objašnjavam koncept jasno, uz jednostavne primere i crteže kada je potrebno.</li>
+      <li>Zajedno rešavamo zadatke, a zatim proveravamo da li možete samostalno primeniti postupak.</li>
+    </ol>
+    <p>Cilj nije da zapamtite jedno rešenje, već da razumete ideju i možete rešavati slične probleme.</p>
+
+    <h2>Online način rada</h2>
+    <p>Časovi se održavaju online uz video-poziv, deljenje ekrana i zajedničko pisanje i rešavanje zadataka na digitalnoj tabli ili u materijalu koji koristite.</p>
+
+    <h2>Šta poslati pre prvog časa?</h2>
+    <ul>
+      <li>koji razred ili fakultet pohađate;</li>
+      <li>koju oblast trenutno radite;</li>
+      <li>zadatke ili fotografiju gradiva sa kojim imate problem;</li>
+      <li>kada imate kontrolni, kolokvijum ili ispit;</li>
+      <li>šta želite da postignete.</li>
+    </ul>
+
+    <section class="not-prose border-border mt-12 rounded-xl border p-6 sm:p-8">
+      <h2 class="mt-0 text-2xl font-semibold">Zainteresovani ste za čas?</h2>
+      <p class="mt-3 mb-6">Pošaljite mi oblast ili zadatak koji želite da radimo. Odgovoriću vam sa predlogom načina rada i dostupnim terminima.</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <a href={whatsappURL} target="_blank" rel="noopener noreferrer" class="bg-accent text-accent-foreground flex min-h-14 items-center justify-center gap-3 rounded-lg px-5 py-3 font-semibold"><Icon name="simple-icons:whatsapp" class="size-6" aria-hidden="true" />WhatsApp</a>
+        <a href={getViberURL()} class="border-border hover:border-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold"><Icon name="simple-icons:viber" class="size-6" aria-hidden="true" />Viber</a>
+        <a href={`tel:${CONTACT.phoneHref}`} class="border-border hover:border-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold"><Icon name="tabler:phone" class="size-6" aria-hidden="true" />Pozovite</a>
+      </div>
+    </section>
+  </Main>
+  <Footer />
+</Layout>

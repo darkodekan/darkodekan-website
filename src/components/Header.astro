@@ -245,6 +245,26 @@ const languageHreflang = isSerbianPage ? "en" : "sr-RS";
                   Programiranje
                 </a>
               </li>
+              <li class="col-span-2">
+                <a
+                  href={addBase(
+                    "/sr/privatni-casovi/matematika/"
+                  )}
+                  class:list={{
+                    "active-nav": normalizedPath.startsWith(
+                      "/sr/privatni-casovi/matematika/"
+                    ),
+                  }}
+                  aria-current={
+                    normalizedPath ===
+                    "/sr/privatni-casovi/matematika/"
+                      ? "page"
+                      : undefined
+                  }
+                >
+                  Matematika
+                </a>
+              </li>
             </>
           ) : (
             <>
@@ -327,7 +347,7 @@ const languageHreflang = isSerbianPage ? "en" : "sr-RS";
             </li>
           )
         }
-
+<!-- 
         {
           !isSerbianPage && features.showArchives && (
             <li class="col-span-2">
@@ -364,6 +384,10 @@ const languageHreflang = isSerbianPage ? "en" : "sr-RS";
           )
         }
 
+        -->
+
+        <!-- 
+
         {
           !isSerbianPage &&
             features.search !== false && (
@@ -397,6 +421,7 @@ const languageHreflang = isSerbianPage ? "en" : "sr-RS";
               </li>
             )
         }
+         -->
 
         {
           features.lightAndDarkMode && (
