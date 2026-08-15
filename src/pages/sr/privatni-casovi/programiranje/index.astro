@@ -28,6 +28,28 @@ const emailURL = getEmailURL(
   "Privatni časovi programiranja"
 );
 
+// TODO: replace with your real testimonials (name + optional context, e.g. "student, FTN")
+const testimonials = [
+  {
+    quote:
+      "Profesor ima izuzetno znanje i sjajan način objašnjavanja. Vrlo je strpljiv i uvek se potrudi da sve bude jasno i razumljivo. Lekcije su prijatne, zanimljive i korisne, za svaku preporuku!",
+    name: "Irena",
+    context: "student",
+  },
+  {
+    quote:
+      "Koncizan, jasan, sve najbolje.",
+    name: "Olivera",
+    context: "majka učenice",
+  },
+  {
+    quote:
+      "Baš je zadovoljan tvojim načinom predavanja ove godine, kao i ja. Ok si bio i prošle godine, ali sada si baš profi. Drago mi je što učim ovaj predmet sa tobom.",
+    name: "Ana Marija",
+    context: "student",
+  },
+];
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -174,6 +196,36 @@ const structuredData = {
     </span>
   </a>
 </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- NEW: O meni / trust section                    -->
+    <!-- ============================================= -->
+    <section
+      class="not-prose border-border mb-12 rounded-xl border p-6 sm:p-8"
+    >
+      <div class="grid gap-6 sm:grid-cols-[auto_1fr] sm:items-center">
+        <img
+          src="/images/profile-pic.png"
+          alt="Darko Dekan"
+          width="140"
+          height="140"
+          loading="lazy"
+          class="border-border mx-auto size-28 rounded-full border object-cover sm:mx-0 sm:size-32"
+        />
+
+        <div>
+          <h2 class="mt-0 text-xl font-semibold">O meni</h2>
+
+          <!-- TODO: replace with your real bio — years of experience, education, relevant work -->
+          <p class="mb-0">
+            Zovem se Darko Dekan i bavim se profesionalno programiranjem i
+            podučavanjem već 8+ godina. Do sada sam radio sa
+            1000+ učenika, studenata i programera na pripremi ispita, kolokvijuma, intervjua
+            i praktičnih projekata.
+          </p>
+        </div>
+      </div>
     </section>
 
     <h2>Kome su časovi namenjeni?</h2>
@@ -384,6 +436,49 @@ const structuredData = {
       već koristite na fakultetu ili instalirati odgovarajuće alate pre
       prvog časa.
     </p>
+
+    <!-- ============================================= -->
+    <!-- NEW: Cena section                               -->
+    <!-- ============================================= -->
+    <section
+      class="not-prose border-border bg-muted/20 my-12 rounded-xl border p-6 sm:p-8"
+    >
+      <h2 class="mt-0 text-xl font-semibold">Cena časa</h2>
+
+      <!-- TODO: replace with your real price / range -->
+      <p class="mb-2 text-lg">
+        Cena časa zavisi od oblasti i učestalosti, i kreće se od&nbsp; 
+        <strong>1800 din</strong> za 60 min. I povoljnija opcija&nbsp;
+        <strong>2500 din</strong> za 90 min.
+      </p>
+
+      <p class="text-muted-foreground mb-0 text-sm">
+        Tačnu cenu i predlog dinamike dobijate nakon kratkog razgovora
+        o vašim ciljevima.
+      </p>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- NEW: Testimonials section                       -->
+    <!-- ============================================= -->
+    <section class="not-prose my-12">
+      <h2 class="mb-6 text-xl font-semibold">Šta kažu polaznici</h2>
+
+      <div class="grid gap-4 sm:grid-cols-3">
+        {testimonials.map((t) => (
+          <blockquote class="border-border flex h-full flex-col justify-between rounded-lg border p-5">
+            <p class="mb-4 text-sm leading-relaxed italic">
+              "{t.quote}"
+            </p>
+
+            <footer class="text-muted-foreground text-sm">
+              <span class="font-semibold not-italic">{t.name}</span>
+              {t.context && <span> — {t.context}</span>}
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </section>
 
     <h2>Šta poslati pre prvog časa?</h2>
 
