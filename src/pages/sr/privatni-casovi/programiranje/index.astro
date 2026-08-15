@@ -75,14 +75,13 @@ const structuredData = {
   title={pageTitle}
   description={pageDescription}
   canonicalURL={canonicalURL}
+  ogImage="/images/privatni_casovi_banner.png"
+
 >
   <Fragment slot="head">
-    <link
-      rel="alternate"
-      hreflang="sr-Latn"
-      href={canonicalURL}
-    />
-
+    <link rel="alternate" hreflang="sr-Latn" href={canonicalURL} />
+   <link rel="alternate" hreflang="en" href="https://darkodekan.com/tutoring/programming/" />
+   <link rel="alternate" hreflang="x-default" href="https://darkodekan.com/tutoring/programming/" />
     <meta property="og:locale" content="sr_RS" />
 
     <script
