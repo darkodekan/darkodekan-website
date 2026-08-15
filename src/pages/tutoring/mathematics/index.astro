@@ -1,0 +1,173 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import { Icon } from "astro-icon/components";
+import {
+  CONTACT,
+  getViberURL,
+  getWhatsAppURL,
+} from "@/config/contact";
+
+const canonicalURL =
+  "https://darkodekan.com/tutoring/mathematics/";
+
+const pageTitle =
+  "Online Mathematics Tutoring | Darko Dekan";
+
+const pageDescription =
+  "Individual online mathematics tutoring for middle school, high school, and university students. Help with understanding concepts, solving problems, and exam preparation.";
+
+const whatsappURL = getWhatsAppURL(
+  "Hello Darko, I am interested in mathematics tutoring."
+);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Mathematics Tutoring",
+  description: pageDescription,
+  url: canonicalURL,
+  serviceType: "Online mathematics tutoring",
+  areaServed: { "@type": "Country", name: "Serbia" },
+  provider: {
+    "@type": "Person",
+    name: CONTACT.name,
+    url: "https://darkodekan.com/",
+  },
+};
+---
+
+<Layout
+  lang="en"
+  dir="ltr"
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalURL}
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="en" href={canonicalURL} />
+    <link rel="alternate" hreflang="sr-Latn" href="https://darkodekan.com/sr/privatni-casovi/matematika/" />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
+    <meta property="og:locale" content="en_US" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  <Header />
+
+  <Main
+    pageTitle="Mathematics Tutoring"
+    pageDesc="Individual explanations and problem solving tailored to your current knowledge, curriculum, and goals."
+    class="app-prose pt-10 sm:pt-14"
+  >
+    <figure class="not-prose mb-10">
+      <img
+        src="/images/privatni_casovi_math_banner.png"
+        alt="Individual online mathematics tutoring"
+        width="1200"
+        height="675"
+        loading="eager"
+        fetchpriority="high"
+        class="border-border w-full rounded-xl border object-cover"
+      />
+      <figcaption class="text-muted-foreground mt-2 text-center text-sm">
+        Individual online mathematics tutoring for students. {CONTACT.phoneDisplay}.
+      </figcaption>
+    </figure>
+
+    <section class="not-prose border-border bg-muted/20 mb-10 rounded-xl border p-6 sm:p-8">
+      <p class="m-0 text-lg leading-relaxed">
+        Understand mathematics through clear explanations, step-by-step problem solving,
+        and practice tailored to your current level of knowledge.
+      </p>
+
+      <ul class="mt-5 grid gap-2 sm:grid-cols-2">
+        <li>✓ One-on-one sessions</li>
+        <li>✓ Online classes</li>
+        <li>✓ Test, midterm, and exam preparation</li>
+        <li>✓ Focus on process over just the final answer</li>
+      </ul>
+
+      <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" aria-label="Contact options">
+        <a href={whatsappURL} target="_blank" rel="noopener noreferrer" class="bg-accent text-accent-foreground hover:bg-accent/90 flex min-h-14 items-center justify-center gap-3 rounded-lg px-5 py-3 font-semibold transition-colors">
+          <Icon name="simple-icons:whatsapp" class="size-6 shrink-0" aria-hidden="true" />
+          <span>WhatsApp<span class="block text-sm opacity-80">{CONTACT.phoneDisplay}</span></span>
+        </a>
+        <a href={getViberURL()} class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors">
+          <Icon name="simple-icons:viber" class="size-6 shrink-0" aria-hidden="true" />
+          <span>Viber<span class="block text-sm opacity-70">{CONTACT.phoneDisplay}</span></span>
+        </a>
+        <a href={`tel:${CONTACT.phoneHref}`} class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors">
+          <Icon name="tabler:phone" class="size-6 shrink-0" aria-hidden="true" />
+          <span>Call<span class="block text-sm opacity-70">{CONTACT.phoneDisplay}</span></span>
+        </a>
+      </div>
+    </section>
+
+    <h2>Who are these lessons for?</h2>
+    <p>
+      The sessions are designed for middle schoolers, high schoolers, university students, and anyone 
+      who wants to build a systematic understanding of mathematics and gain confidence in solving problems.
+    </p>
+    <ul>
+      <li>students who need help keeping up with school coursework;</li>
+      <li>high school students preparing for tests, finals, or entrance exams;</li>
+      <li>university students preparing for midterms or final exams;</li>
+      <li>beginners who are missing core concepts and confidence;</li>
+      <li>anyone looking for assistance with specific problem sets.</li>
+    </ul>
+
+    <h2>Mathematical Topics</h2>
+    <div class="not-prose my-7 grid gap-4 sm:grid-cols-2">
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3"><span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"><Icon name="tabler:math-function" class="size-7" aria-hidden="true" /></span><h3 class="text-accent m-0 text-xl font-semibold">Algebra</h3></div>
+        <p class="mb-0">Equations and inequalities, systems, polynomials, functions, logarithms, exponential functions, and sequences.</p>
+      </section>
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3"><span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"><Icon name="tabler:chart-line" class="size-7" aria-hidden="true" /></span><h3 class="text-accent m-0 text-xl font-semibold">Calculus & Analysis</h3></div>
+        <p class="mb-0">Limits, continuity, derivatives, integrals, series, and fundamentals of differential calculus.</p>
+      </section>
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3"><span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"><Icon name="tabler:triangle" class="size-7" aria-hidden="true" /></span><h3 class="text-accent m-0 text-xl font-semibold">Geometry</h3></div>
+        <p class="mb-0">Plane and solid geometry, triangles, circles, vectors, analytic geometry, and trigonometry.</p>
+      </section>
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3"><span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"><Icon name="tabler:school" class="size-7" aria-hidden="true" /></span><h3 class="text-accent m-0 text-xl font-semibold">Higher Mathematics</h3></div>
+        <p class="mb-0">Linear algebra, discrete mathematics, probability, differential equations, and exam preparation.</p>
+      </section>
+    </div>
+
+    <h2>How do the sessions work?</h2>
+    <ol>
+      <li>Before the session, you send over the topic, problem, or study material you are working on.</li>
+      <li>We identify what you already understand and where you are getting stuck.</li>
+      <li>I explain the concept clearly, using simple examples and diagrams when necessary.</li>
+      <li>We solve problems together, then verify that you can apply the process independently.</li>
+    </ol>
+    <p>The goal is not just to memorize a single answer, but to understand the underlying idea so you can tackle similar problems on your own.</p>
+
+    <h2>Online Format</h2>
+    <p>Sessions are conducted online via video call, screen sharing, and collaborative writing on a digital whiteboard or directly within your study materials.</p>
+
+    <h2>What to send before your first session?</h2>
+    <ul>
+      <li>your grade level or university program;</li>
+      <li>the specific topic you are currently covering;</li>
+      <li>problems or photos of the course material you are struggling with;</li>
+      <li>when you have an upcoming test, midterm, or exam;</li>
+      <li>what specific goals you want to achieve.</li>
+    </ul>
+
+    <section class="not-prose border-border mt-12 rounded-xl border p-6 sm:p-8">
+      <h2 class="mt-0 text-2xl font-semibold">Interested in a session?</h2>
+      <p class="mt-3 mb-6">Send me the topic or problem you want to work on. I will get back to you with a study plan proposal and available time slots.</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <a href={whatsappURL} target="_blank" rel="noopener noreferrer" class="bg-accent text-accent-foreground flex min-h-14 items-center justify-center gap-3 rounded-lg px-5 py-3 font-semibold"><Icon name="simple-icons:whatsapp" class="size-6" aria-hidden="true" />WhatsApp</a>
+        <a href={getViberURL()} class="border-border hover:border-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold"><Icon name="simple-icons:viber" class="size-6" aria-hidden="true" />Viber</a>
+        <a href={`tel:${CONTACT.phoneHref}`} class="border-border hover:border-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold"><Icon name="tabler:phone" class="size-6" aria-hidden="true" />Call</a>
+      </div>
+    </section>
+  </Main>
+  <Footer />
+</Layout>

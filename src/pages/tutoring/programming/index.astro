@@ -1,0 +1,488 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import { Icon } from "astro-icon/components";
+import {
+  CONTACT,
+  getEmailURL,
+  getViberURL,
+  getWhatsAppURL,
+} from "@/config/contact";
+
+const canonicalURL =
+  "https://darkodekan.com/tutoring/programming/";
+
+const pageTitle =
+  "Programming Tutoring – Python, Java, C/C++, Web Dev | Darko Dekan";
+
+const pageDescription =
+  "Individual online programming tutoring for beginners, students, and professionals. Python, Java, C/C++, algorithms, OOP, web development, exam preparation, and practical projects.";
+
+const whatsappURL = getWhatsAppURL(
+  "Hello Darko, I am interested in programming tutoring."
+);
+
+const emailURL = getEmailURL(
+  "Programming Tutoring"
+);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Programming Tutoring",
+  description: pageDescription,
+  url: canonicalURL,
+  serviceType: "Online programming tutoring",
+  areaServed: {
+    "@type": "Country",
+    name: "Serbia",
+  },
+  provider: {
+    "@type": "Person",
+    name: CONTACT.name,
+    url: "https://darkodekan.com/",
+  },
+};
+---
+
+<Layout
+  lang="en"
+  dir="ltr"
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalURL}
+>
+  <Fragment slot="head">
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={canonicalURL}
+    />
+    <link
+      rel="alternate"
+      hreflang="sr-Latn"
+      href="https://darkodekan.com/sr/privatni-casovi/programiranje/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={canonicalURL}
+    />
+
+    <meta property="og:locale" content="en_US" />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </Fragment>
+
+  <Header />
+
+  <Main
+    pageTitle="Programming Tutoring (Python, Java, C/C++, JavaScript, Web Dev)"
+    pageDesc="Individual online lessons tailored to your current knowledge, curriculum, and goals."
+  class="app-prose pt-10 sm:pt-14"  >
+
+    <figure class="not-prose mb-10">
+    <img
+      src="/images/privatni_casovi_banner.png"
+      alt="Individual online programming tutoring"
+      width="1200"
+      height="675"
+      loading="eager"
+      fetchpriority="high"
+      class="border-border w-full rounded-xl border object-cover"
+    />
+
+    <figcaption class="text-muted-foreground mt-2 text-center text-sm">
+      Individual online tutoring for Python, Java, JavaScript, and C/C++. {CONTACT.phoneDisplay}.
+    </figcaption>
+  </figure>
+
+    
+    <section
+      class="not-prose border-border bg-muted/20 mb-10 rounded-xl border p-6 sm:p-8"
+    >
+      <p class="m-0 text-lg leading-relaxed">
+        Learn programming through individual explanations, practical
+        examples, and exercises tailored to your current level.
+      </p>
+
+      <ul class="mt-5 grid gap-2 sm:grid-cols-2">
+        <li>✓ One-on-one sessions</li>
+        <li>✓ Online classes</li>
+        <li>✓ Exam preparation</li>
+        <li>✓ Practical tasks and projects</li>
+      </ul>
+
+      <div
+  class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+  aria-label="Contact options"
+>
+  <a
+    href={whatsappURL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="bg-accent text-accent-foreground hover:bg-accent/90 flex min-h-14 items-center justify-center gap-3 rounded-lg px-5 py-3 font-semibold transition-colors"
+    aria-label={`Send a WhatsApp message to ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="simple-icons:whatsapp"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
+
+    <span class="text-left">
+      WhatsApp
+
+      <span class="block text-sm opacity-80">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+
+  <a
+    href={getViberURL()}
+    class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+    aria-label={`Contact Darko via Viber at ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="simple-icons:viber"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
+
+    <span class="text-left">
+      Viber
+
+      <span class="block text-sm opacity-70">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+
+  <a
+    href={`tel:${CONTACT.phoneHref}`}
+    class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+    aria-label={`Call Darko at ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="tabler:phone"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
+
+    <span class="text-left">
+      Call
+
+      <span class="block text-sm opacity-70">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+</div>
+    </section>
+
+    <h2>Who are these lessons for?</h2>
+
+    <p>
+      The sessions are designed for beginners, high school students, university students, and
+      anyone looking to better understand programming or improve their
+      practical skills.
+    </p>
+
+    <ul>
+      <li>beginners learning programming for the first time;</li>
+      <li>students preparing for midterms or final exams;</li>
+      <li>students who need help with school coursework;</li>
+      <li>individuals transitioning to a new programming language;</li>
+      <li>candidates preparing for technical interviews;</li>
+      <li>students who need guidance with project work.</li>
+    </ul>
+
+    <h2>Programming Languages and Topics</h2>
+<div class="not-prose my-7 grid gap-4 sm:grid-cols-2">
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="simple-icons:python"
+          class="size-6"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        Python
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      Basics, functions, classes, object-oriented programming,
+      algorithms, data handling, automation, Flask, and Django.
+    </p>
+  </section>
+
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="simple-icons:openjdk"
+          class="size-6"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        Java
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      Java basics, classes and objects, inheritance, interfaces,
+      collections, exceptions, algorithms, and Spring basics.
+    </p>
+  </section>
+
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="simple-icons:cplusplus"
+          class="size-6"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        C/C++
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      C and C++ fundamentals, pointers, memory management, arrays,
+      structures, functions, object-oriented programming, STL, algorithms, and data structures.
+    </p>
+  </section>
+
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="simple-icons:javascript"
+          class="size-6"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        JavaScript
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      JavaScript basics, functions, arrays and objects, the DOM, events,
+      asynchronous programming, working with APIs, frontend development,
+      Node.js, and React basics.
+    </p>
+  </section>
+
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="tabler:binary-tree-2"
+          class="size-7"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        Algorithms & Data Structures
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      Problem analysis, algorithmic complexity, recursion, sorting,
+      searching, lists, stacks, queues, trees, and graphs.
+    </p>
+  </section>
+
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="tabler:school"
+          class="size-7"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        University Coursework
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      Midterm and exam preparation, understanding existing codebases,
+      debugging, and explaining core course concepts.
+    </p>
+  </section>
+</div>
+
+    <h2>How do the sessions work?</h2>
+
+    <ol>
+      <li>
+        Before the session, you send over the topic, problem, or study material you are working on.
+      </li>
+
+      <li>
+        We evaluate what you already understand and where you are getting stuck.
+      </li>
+
+      <li>
+        I explain the concept using a simpler, concrete example.
+      </li>
+
+      <li>
+        We solve problems together and verify that you can apply the process independently.
+      </li>
+    </ol>
+
+    <p>
+      The goal of the session is not just to give you the final solution. It is vital that you
+      understand the workflow so you can tackle similar problems on your own afterwards.
+    </p>
+
+    <h2>Online Format</h2>
+
+    <p>
+      Sessions are conducted online via live conversation, screen sharing, and
+      collaborative code writing. We can use the development environment you
+      already use for your courses or set up the appropriate tools before our first session.
+    </p>
+
+    <h2>What to send before your first session?</h2>
+
+    <p>In your first message, please include:</p>
+
+    <ul>
+      <li>the programming language or subject you are studying;</li>
+      <li>your school or university program, if applicable;</li>
+      <li>the specific topic you are currently covering;</li>
+      <li>when you have an upcoming midterm or exam;</li>
+      <li>how much previous experience you have.</li>
+    </ul>
+
+    <section
+      class="not-prose border-border mt-12 rounded-xl border p-6 sm:p-8"
+    >
+      <h2 class="mt-0 text-2xl font-semibold">
+        Interested in a session?
+      </h2>
+
+      <p class="mt-3 mb-6">
+        Send me what you are currently studying and what you want to achieve.
+        I will get back to you with a study plan proposal and available time slots.
+      </p>
+
+    
+      <div
+  class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+  aria-label="Contact options"
+>
+  <a
+    href={whatsappURL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="bg-accent text-accent-foreground hover:bg-accent/90 flex min-h-14 items-center justify-center gap-3 rounded-lg px-5 py-3 font-semibold transition-colors"
+    aria-label={`Send a WhatsApp message to ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="simple-icons:whatsapp"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
+
+    <span class="text-left">
+      WhatsApp
+
+      <span class="block text-sm opacity-80">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+
+  <a
+    href={getViberURL()}
+    class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+    aria-label={`Contact Darko via Viber at ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="simple-icons:viber"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
+
+    <span class="text-left">
+      Viber
+
+      <span class="block text-sm opacity-70">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+
+  <a
+    href={`tel:${CONTACT.phoneHref}`}
+    class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+    aria-label={`Call Darko at ${CONTACT.phoneDisplay}`}
+  >
+    <Icon
+      name="tabler:phone"
+      class="size-6 shrink-0"
+      aria-hidden="true"
+    />
+
+    <span class="text-left">
+      Call
+
+      <span class="block text-sm opacity-70">
+        {CONTACT.phoneDisplay}
+      </span>
+    </span>
+  </a>
+</div>
+    </section>
+  </Main>
+
+  <Footer />
+</Layout>

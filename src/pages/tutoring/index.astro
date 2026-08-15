@@ -2,39 +2,60 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout
-  title="Private Tutoring | Darko Dekan"
-  description="Individual online tutoring in mathematics and programming."
+  title="Online Tutoring Services | Math & Programming | Darko Dekan"
+  description="Professional online tutoring in mathematics and programming. Tailored individual lessons for students of all levels. Achieve your academic goals with expert guidance."
 >
   <Header />
 
-  <main id="main-content" class="app-layout flex-1">
+  <main id="main-content" class="app-layout flex-1 pt-10">
     <section class="py-10">
-      <h1 class="text-3xl font-bold sm:text-4xl">
-        Private tutoring
-      </h1>
-
-      <p class="mt-4 max-w-2xl text-lg text-foreground/75">
-        Individual online lessons in mathematics and programming.
-        Detailed tutoring options will be available here soon.
+      <h1 class="text-4xl font-bold sm:text-5xl">Private Tutoring</h1>
+      <p class="mt-6 max-w-2xl text-xl text-foreground/80 leading-relaxed">
+        Personalized online tutoring designed to bridge the gap between confusion and mastery. 
+        Whether you are tackling complex mathematical proofs or debugging software, I provide 
+        one-on-one guidance to help you succeed.
       </p>
 
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a
-          href="mailto:darko.dekan@gmail.com"
-          class="bg-accent text-accent-foreground rounded-lg px-5 py-3 font-medium"
-        >
-          Contact by email
+      <!-- Service Cards -->
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        <a href="/tutoring/mathematics" class="border-border hover:border-accent/60 group rounded-2xl border p-8 transition-all hover:bg-muted/30">
+          <h2 class="text-2xl font-semibold group-hover:text-accent">Mathematics</h2>
+          <p class="mt-3 text-foreground/70">From algebra and geometry to calculus and university-level analysis. Structured, clear, and goal-oriented.</p>
+          <span class="mt-4 inline-flex items-center gap-2 font-medium text-accent">
+            Explore Math Tutoring <Icon name="tabler:arrow-right" class="size-4" />
+          </span>
         </a>
 
-        <a
-          href="https://wa.me/381621005941"
-          class="border-border rounded-lg border px-5 py-3 font-medium"
-        >
-          Contact on WhatsApp
+        <a href="/tutoring/programming" class="border-border hover:border-accent/60 group rounded-2xl border p-8 transition-all hover:bg-muted/30">
+          <h2 class="text-2xl font-semibold group-hover:text-accent">Programming</h2>
+          <p class="mt-3 text-foreground/70">Master Python, Java, C/C++, and Web Development. Practical coding help, algorithmic foundations, and project mentorship.</p>
+          <span class="mt-4 inline-flex items-center gap-2 font-medium text-accent">
+            Explore Programming Tutoring <Icon name="tabler:arrow-right" class="size-4" />
+          </span>
         </a>
+      </div>
+
+      <!-- Credibility Section -->
+      <div class="mt-16 border-t pt-10">
+        <h2 class="text-2xl font-semibold">Why choose individual tutoring?</h2>
+        <div class="mt-6 grid gap-6 md:grid-cols-3">
+          <div>
+            <h3 class="font-semibold text-lg">Customized Pace</h3>
+            <p class="text-sm text-foreground/70 mt-1">Lessons adapt to your speed—no rushing, no stagnation.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">Focus on Concepts</h3>
+            <p class="text-sm text-foreground/70 mt-1">We don't just solve problems; we explain the 'why' behind the logic.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">Exam Readiness</h3>
+            <p class="text-sm text-foreground/70 mt-1">Preparation strategies for school tests, university midterms, and finals.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>

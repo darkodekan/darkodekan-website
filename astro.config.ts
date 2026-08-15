@@ -22,6 +22,8 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import icon from "astro-icon";
 
+
+
 export default defineConfig({
   site: config.site.url,
   integrations: [

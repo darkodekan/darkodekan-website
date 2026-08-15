@@ -1,0 +1,74 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout
+  lang="sr-Latn"
+  dir="ltr"
+  title="Privatni časovi | Matematika i programiranje | Darko Dekan"
+  description="Profesionalni online privatni časovi iz matematike i programiranja. Individualni pristup prilagođen učenicima svih nivoa. Ostvarite svoje akademske ciljeve uz stručno vođstvo."
+  canonicalURL="https://darkodekan.com/sr/privatni-casovi/"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="sr-Latn" href="https://darkodekan.com/sr/privatni-casovi/" />
+    <link rel="alternate" hreflang="en" href="https://darkodekan.com/tutoring/" />
+    <link rel="alternate" hreflang="x-default" href="https://darkodekan.com/tutoring/" />
+    <meta property="og:locale" content="sr_RS" />
+  </Fragment>
+
+  <Header />
+
+  <main id="main-content" class="app-layout flex-1 pt-10">
+    <section class="py-10">
+      <h1 class="text-4xl font-bold sm:text-5xl">Privatni časovi</h1>
+      <p class="mt-6 max-w-2xl text-xl text-foreground/80 leading-relaxed">
+        Personalizovani online časovi dizajnirani da premoste jaz između neznanja i razumevanja. 
+        Bilo da savladavate složene matematičke dokaze ili pišete i debagujete kod, 
+        pružam individualnu podršku koja vam pomaže da uspete.
+      </p>
+
+      <!-- Service Cards -->
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        <a href="/sr/privatni-casovi/matematika" class="border-border hover:border-accent/60 group rounded-2xl border p-8 transition-all hover:bg-muted/30">
+          <h2 class="text-2xl font-semibold group-hover:text-accent">Matematika</h2>
+          <p class="mt-3 text-foreground/70">Od algebre i geometrije do matematičke analize na fakultetu. Struktuirano, jasno i usmereno ka cilju.</p>
+          <span class="mt-4 inline-flex items-center gap-2 font-medium text-accent">
+            Istražite časove matematike <Icon name="tabler:arrow-right" class="size-4" />
+          </span>
+        </a>
+
+        <a href="/sr/privatni-casovi/programiranje" class="border-border hover:border-accent/60 group rounded-2xl border p-8 transition-all hover:bg-muted/30">
+          <h2 class="text-2xl font-semibold group-hover:text-accent">Programiranje</h2>
+          <p class="mt-3 text-foreground/70">Savladajte Python, Java, C/C++ i veb razvoj. Praktična pomoć u kodiranju, algoritmi i mentorski rad na projektima.</p>
+          <span class="mt-4 inline-flex items-center gap-2 font-medium text-accent">
+            Istražite časove programiranja <Icon name="tabler:arrow-right" class="size-4" />
+          </span>
+        </a>
+      </div>
+
+      <!-- Credibility Section -->
+      <div class="mt-16 border-t pt-10">
+        <h2 class="text-2xl font-semibold">Zašto izabrati individualne časove?</h2>
+        <div class="mt-6 grid gap-6 md:grid-cols-3">
+          <div>
+            <h3 class="font-semibold text-lg">Prilagođen tempo</h3>
+            <p class="text-sm text-foreground/70 mt-1">Časovi se prilagođavaju vašoj brzini učenja – bez žurbe i preskakanja gradiva.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">Fokus na suštinu</h3>
+            <p class="text-sm text-foreground/70 mt-1">Ne rešavamo samo zadatke; objašnjavamo logiku i suštinu koja stoji iza njih.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">Priprema za ispite</h3>
+            <p class="text-sm text-foreground/70 mt-1">Efikasne strategije i priprema za školske kontrolne, kolokvijume i ispite.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
