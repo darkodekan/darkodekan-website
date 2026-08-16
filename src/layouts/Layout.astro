@@ -43,23 +43,28 @@ const rssHref = getRelativeLocaleUrl(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
     <link rel="icon" type="image/svg+xml" href={getAssetPath("favicon.svg")} />
     <link rel="icon" href={getAssetPath("favicon.ico")} />
     <link rel="canonical" href={canonicalURL} />
+
     <meta name="generator" content={Astro.generator} />
 
     <!-- Font -->
+     
     <Font
       cssVariable="--font-google-sans-code"
       preload={[{ subset: "latin", weight: 400, style: "normal" }]}
-    />
+    /> 
 
     <!-- Primary meta -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={site.author} />
+    
     <link rel="sitemap" href={getAssetPath("sitemap-index.xml")} />
+  
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -77,12 +82,13 @@ const rssHref = getRelativeLocaleUrl(
     <meta property="twitter:image" content={socialImageURL} />
 
     <!-- RSS autodiscovery -->
+     
     <link
       rel="alternate"
       type="application/rss+xml"
       title={site.title}
       href={new URL(rssHref, Astro.site)}
-    />
+    /> 
 
     <!-- Filled at runtime by theme.ts to match the current background colour -->
     <meta name="theme-color" content="" />
@@ -103,27 +109,24 @@ const rssHref = getRelativeLocaleUrl(
       Inline FOUC-prevention script: sets data-theme on <html> before
       the browser paints. Runs synchronously, no defer/async.
     -->
-    <script is:inline>
-      (function () {
-        const stored = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-        const theme = stored ?? (prefersDark ? "dark" : "light");
-        const root = document.firstElementChild;
-        root?.setAttribute("data-theme", theme);
-        root?.classList.toggle("dark", theme === "dark");
-        // Expose value so theme.ts can skip re-detection.
-        window.__theme = { value: theme };
-      })();
-    </script>
-
+  <script is:inline>
+  (function () {
+    const stored = localStorage.getItem("theme");
+    const theme = stored ?? "dark";
+    const root = document.firstElementChild;
+    root?.setAttribute("data-theme", theme);
+    root?.classList.toggle("dark", theme === "dark");
+    // Expose value so theme.ts can skip re-detection.
+    window.__theme = { value: theme };
+  })();
+</script>
     <ClientRouter />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" />
+
   </head>
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
-/>
+
+
   <body
     class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col"
   >

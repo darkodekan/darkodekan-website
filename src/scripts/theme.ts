@@ -58,11 +58,3 @@ document.addEventListener("astro:before-swap", event => {
       ?.setAttribute("content", color);
   }
 });
-
-// Sync with OS-level dark/light preference changes.
-window
-  .matchMedia("(prefers-color-scheme: dark)")
-  .addEventListener("change", ({ matches }) => {
-    themeValue = matches ? DARK : LIGHT;
-    persist();
-  });
