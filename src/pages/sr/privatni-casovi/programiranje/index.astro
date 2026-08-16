@@ -15,10 +15,10 @@ const canonicalURL =
   "https://darkodekan.com/sr/privatni-casovi/programiranje/";
 
 const pageTitle =
-  "Privatni časovi programiranja – Python, Java, C/C++, Web Dev | Darko Dekan";
+  "Privatni časovi programiranja – Python, Java, C/C++/C#, JavaScript | Darko Dekan";
 
 const pageDescription =
-  "Individualni online časovi programiranja za početnike, učenike i studente. Python, Java, C/C++, algoritmi, OOP, veb aplikacije, priprema ispita i praktični projekti.";
+  "Privatni online časovi programiranja za početnike, učenike i studente. Python, Java, C/C++/C#, JavaScript, algoritmi, OOP, veb aplikacije, priprema kolokvijuma, ispita i praktični projekti.";
 
 const whatsappURL = getWhatsAppURL(
   "Zdravo Darko, zanimaju me privatni časovi programiranja."
@@ -31,24 +31,55 @@ const emailURL = getEmailURL(
 // TODO: replace with your real testimonials (name + optional context, e.g. "student, FTN")
 const testimonials = [
   {
-    quote:
-      "Profesor ima izuzetno znanje i sjajan način objašnjavanja. Vrlo je strpljiv i uvek se potrudi da sve bude jasno i razumljivo. Lekcije su prijatne, zanimljive i korisne, za svaku preporuku!",
+    quote: "Profesor ima izuzetno znanje i sjajan način objašnjavanja. Vrlo je strpljiv i uvek se potrudi da sve bude jasno i razumljivo. Lekcije su prijatne, zanimljive i korisne, za svaku preporuku!",
     name: "Irena",
     context: "student",
+    rating: 5,
   },
   {
-    quote:
-      "Koncizan, jasan, sve najbolje.",
+    quote: "Koncizan, jasan, sve najbolje.",
     name: "Olivera",
     context: "majka učenice",
+    rating: 5,
   },
   {
-    quote:
-      "Baš je zadovoljan tvojim načinom predavanja ove godine, kao i ja. Ok si bio i prošle godine, ali sada si baš profi. Drago mi je što učim ovaj predmet sa tobom.",
+    quote: "Baš je zadovoljan tvojim načinom predavanja ove godine, kao i ja. Ok si bio i prošle godine, ali sada si baš profi. Drago mi je što učim ovaj predmet sa tobom.",
     name: "Ana Marija",
     context: "student",
+    rating: 5,
   },
 ];
+
+const avgRating =
+  testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length;
+
+const reviewData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Privatni časovi programiranja",
+  provider: {
+    "@type": "Person",
+    name: CONTACT.name,
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: avgRating.toFixed(1),
+    reviewCount: testimonials.length,
+  },
+  review: testimonials.map((t) => ({
+    "@type": "Review",
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: t.rating,
+      bestRating: 5,
+    },
+    author: {
+      "@type": "Person",
+      name: t.name,
+    },
+    reviewBody: t.quote,
+  })),
+};
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -66,6 +97,31 @@ const structuredData = {
     name: CONTACT.name,
     url: "https://darkodekan.com/",
   },
+};
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Početna",
+      item: "https://darkodekan.com/sr/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Privatni časovi",
+      item: "https://darkodekan.com/sr/privatni-casovi/",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Programiranje",
+      item: canonicalURL,
+    },
+  ],
 };
 ---
 
@@ -88,19 +144,29 @@ const structuredData = {
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />
+
+     <script
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbData)}
+    />
+
+    <script
+    type="application/ld+json"
+    set:html={JSON.stringify(reviewData)}
+  />
   </Fragment>
 
   <Header />
 
   <Main
-    pageTitle="Privatni časovi programiranja (Python, Java, C/C++, JavaScript, Web Dev)"
-    pageDesc="Individualni online časovi prilagođeni vašem predznanju, fakultetskom programu i ciljevima."
+    pageTitle="Privatni časovi programiranja - Python, Java, C/C++/C#, JavaScript"
+    pageDesc="Privatni online časovi prilagođeni vašem predznanju i ciljevima."
   class="app-prose pt-10 sm:pt-14"  >
 
     <figure class="not-prose mb-10">
     <img
       src="/images/privatni_casovi_banner.png"
-      alt="Individualni online časovi programiranja"
+      alt="Privatni online časovi programiranja"
       width="1200"
       height="675"
       loading="eager"
@@ -109,7 +175,7 @@ const structuredData = {
     />
 
     <figcaption class="text-muted-foreground mt-2 text-center text-sm">
-      Individualni online časovi Pythona, Jave, JavaScripta i C/C++. 062 100 5941.
+      Privatni online časovi Pythona, Jave, JavaScripta, C/C++/C# i razvoja veb aplikacija. 062 100 5941.
     </figcaption>
   </figure>
 
@@ -323,6 +389,32 @@ const structuredData = {
     </p>
   </section>
 
+  
+   <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="simple-icons:csharp"
+          class="size-6"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        C#
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      Osnove jezika C#, objektno orijentisano programiranje, kolekcije,
+      LINQ, rad sa izuzecima, osnove .NET-a i razvoj konzolnih i
+      desktop aplikacija.
+    </p>
+  </section>
   <section
     class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
   >
@@ -346,6 +438,31 @@ const structuredData = {
       Osnove JavaScripta, funkcije, nizovi i objekti, DOM, događaji,
       asinhrono programiranje, rad sa API-jima, frontend razvoj,
       Node.js i osnove Reacta.
+    </p>
+  </section>
+  <section
+    class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors"
+  >
+    <div class="mb-4 flex items-center gap-3">
+      <span
+        class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg"
+      >
+        <Icon
+          name="tabler:world-www"
+          class="size-7"
+          aria-hidden="true"
+        />
+      </span>
+
+      <h3 class="text-accent m-0 text-xl font-semibold">
+        Razvoj veb aplikacija
+      </h3>
+    </div>
+
+    <p class="mb-0">
+      HTML, CSS, izrada frontend i backend dela aplikacije, rad sa
+      API-jima, baze podataka, autentifikacija korisnika, Django,
+      Flask, Spring Boot i postavljanje (deployment) gotove aplikacije.
     </p>
   </section>
 
@@ -398,6 +515,7 @@ const structuredData = {
       debagovanje i objašnjenje koncepata iz gradiva.
     </p>
   </section>
+ 
 </div>
 
     <h2>Kako izgledaju časovi?</h2>
