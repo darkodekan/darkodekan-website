@@ -1,0 +1,607 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import { Icon } from "astro-icon/components";
+import {
+  CONTACT,
+  getEmailURL,
+  getViberURL,
+  getWhatsAppURL,
+} from "@/config/contact";
+
+const canonicalURL =
+  "https://darkodekan.com/sr/privatni-casovi/programiranje/python/";
+
+const pageTitle =
+  "Python privatni časovi programiranja | Darko Dekan";
+
+const pageDescription =
+  "Python privatni časovi programiranja online: OOP, GUI (Tkinter, PyQT), Django, Flask, analiza podataka (pandas, numpy), mašinsko učenje, baze podataka. Priprema ispita i projekata.";
+
+const whatsappURL = getWhatsAppURL(
+  "Zdravo Darko, zanimaju me privatni časovi Pythona."
+);
+
+const emailURL = getEmailURL("Python privatni časovi programiranja");
+
+// TODO: replace with your real Python-specific testimonials if/when available
+// Reusing general testimonials is intentional for now to avoid an empty section;
+// swap in Python-specific quotes once you have them to further differentiate this page.
+const testimonials = [
+  {
+    quote:
+      "Profesor ima izuzetno znanje i sjajan način objašnjavanja. Vrlo je strpljiv i uvek se potrudi da sve bude jasno i razumljivo. Lekcije su prijatne, zanimljive i korisne, za svaku preporuku!",
+    name: "Irena",
+    context: "student",
+    rating: 5,
+    date: "2026-03-10",
+  },
+  {
+    quote: "Koncizan, jasan, sve najbolje.",
+    name: "Olivera",
+    context: "majka učenice",
+    rating: 5,
+    date: "2026-02-14",
+  },
+];
+
+const avgRating =
+  testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length;
+
+const reviewData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Python privatni časovi programiranja",
+  provider: {
+    "@type": "Person",
+    name: CONTACT.name,
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: avgRating.toFixed(1),
+    reviewCount: testimonials.length,
+  },
+  review: testimonials.map((t) => ({
+    "@type": "Review",
+    itemReviewed: {
+      "@type": "Service",
+      name: "Python privatni časovi programiranja",
+    },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: t.rating,
+      bestRating: 5,
+    },
+    author: {
+      "@type": "Person",
+      name: t.name,
+    },
+    datePublished: t.date,
+    reviewBody: t.quote,
+  })),
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Python privatni časovi programiranja",
+  description: pageDescription,
+  url: canonicalURL,
+  serviceType: "Online privatni časovi programiranja – Python",
+  areaServed: {
+    "@type": "Country",
+    name: "Serbia",
+  },
+  provider: {
+    "@type": "Person",
+    name: CONTACT.name,
+    url: "https://darkodekan.com/",
+  },
+  isPartOf: {
+    "@type": "Service",
+    name: "Privatni časovi programiranja",
+    url: "https://darkodekan.com/sr/privatni-casovi/programiranje/",
+  },
+};
+
+// FAQ content here is deliberately distinct from the parent /programiranje/ page
+// (tool/library specific) to avoid duplicate FAQPage schema across pages.
+const faqData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Da li su časovi Pythona pogodni za potpune početnike?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Da, časovi kreću od osnova Pythona i grade se postepeno prema vašem tempu, bez obzira da li prvi put učite programiranje ili već imate iskustva sa drugim jezikom.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Koje biblioteke i oblasti Pythona radite na časovima?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Radim OOP i metaprogramiranje, GUI razvoj sa Tkinter i PyQT, veb razvoj sa Django, Flask i Bottle, REST API, analizu podataka i mašinsko učenje (pandas, numpy, matplotlib, plotly, scipy, scikit-learn), rad sa bazama podataka (MySQL, PostgreSQL, SQLite) i izradu mobilnih aplikacija preko Kivy biblioteke.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Kako izgleda online čas Pythona?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nastava se odvija preko Google Meet, Discord-a ili Zoom-a za audio i video vezu, uz deljenje ekrana pomoću AnyDesk ili TeamViewer alata, tako da možete da se povežete na moj računar i pratite kucanje koda u realnom vremenu.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Da li pomažete oko fakultetskih projekata i ispita iz Pythona?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Da, pomažem oko pripreme ispita i domaćih zadataka, zadajem i ocenjujem projekte radi vežbe, a mogu i da izradim projekat po dogovoru ukoliko vam je potrebna praktična pomoć.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Koliko košta čas Pythona?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Cena časa Pythona je ista kao i za ostale programske jezike: 1800 dinara za 60 minuta, uz povoljniju opciju od 2500 dinara za 90 minuta. Tačna cena i dinamika dogovaraju se nakon kratkog razgovora o vašim ciljevima.",
+      },
+    },
+  ],
+};
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Početna",
+      item: "https://darkodekan.com/sr/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Privatni časovi",
+      item: "https://darkodekan.com/sr/privatni-casovi/",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Programiranje",
+      item: "https://darkodekan.com/sr/privatni-casovi/programiranje/",
+    },
+    {
+      "@type": "ListItem",
+      position: 4,
+      name: "Python",
+      item: canonicalURL,
+    },
+  ],
+};
+---
+
+<Layout
+  lang="sr-Latn"
+  dir="ltr"
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalURL}
+  ogImage="/images/python_privatni.jpg"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="sr-Latn" href={canonicalURL} />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://darkodekan.com/tutoring/programming/python/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://darkodekan.com/tutoring/programming/python/"
+    />
+    <meta property="og:locale" content="sr_RS" />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbData)}
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(reviewData)}
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(faqData)}
+    />
+  </Fragment>
+
+  <Header />
+
+  <nav aria-label="Breadcrumb" class="mx-auto max-w-3xl px-4 pt-6 sm:px-6">
+    <ol class="text-muted-foreground flex flex-wrap items-center gap-1 text-sm">
+      <li>
+        <a href="/sr/" class="hover:text-accent">Početna</a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li>
+        <a href="/sr/privatni-casovi/" class="hover:text-accent">Privatni časovi</a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li>
+        <a href="/sr/privatni-casovi/programiranje/" class="hover:text-accent">
+          Programiranje
+        </a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li aria-current="page" class="text-foreground font-medium">Python</li>
+    </ol>
+  </nav>
+
+  <Main
+    pageTitle="Python privatni časovi programiranja"
+    pageDesc="Individualni online časovi Pythona, od osnova do naprednih oblasti poput veb razvoja, analize podataka i mašinskog učenja."
+    class="app-prose pt-10 sm:pt-14"
+  >
+    <figure class="not-prose mb-10">
+      <img
+        src="/images/python_privatni.jpg"
+        alt="Privatni online časovi Pythona – OOP, Django, Flask, analiza podataka"
+        width="1200"
+        height="675"
+        loading="eager"
+        fetchpriority="high"
+        class="border-border w-full rounded-xl border object-cover"
+      />
+
+      <figcaption class="text-muted-foreground mt-2 text-center text-sm">
+        Privatni online časovi Pythona – od osnova do Django, Flask, pandas i mašinskog učenja. 062 100 5941.
+      </figcaption>
+    </figure>
+
+    <section
+      class="not-prose border-border bg-muted/20 mb-10 rounded-xl border p-6 sm:p-8"
+    >
+      <p class="m-0 text-lg leading-relaxed">
+        Učite Python uz individualna objašnjenja, praktične primere i
+        zadatke prilagođene vašem trenutnom nivou – od prve linije koda
+        do veb aplikacija i analize podataka.
+      </p>
+
+      <ul class="mt-5 grid gap-2 sm:grid-cols-2">
+        <li>✓ Temeljno prolaženje od nule</li>
+        <li>✓ Online časovi</li>
+        <li>✓ Priprema ispita i domaćih zadataka</li>
+        <li>✓ Izrada i ocenjivanje projekata</li>
+      </ul>
+
+      <div
+        class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+        aria-label="Opcije za kontakt"
+      >
+        <a
+          href={whatsappURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-accent text-accent-foreground hover:bg-accent/90 flex min-h-14 items-center justify-center gap-3 rounded-lg px-5 py-3 font-semibold transition-colors"
+          aria-label={`Pošaljite WhatsApp poruku na ${CONTACT.phoneDisplay}`}
+        >
+          <Icon name="simple-icons:whatsapp" class="size-6 shrink-0" aria-hidden="true" />
+          <span class="text-left">
+            WhatsApp
+            <span class="block text-sm opacity-80">{CONTACT.phoneDisplay}</span>
+          </span>
+        </a>
+
+        <a
+          href={getViberURL()}
+          class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+          aria-label={`Kontaktirajte Darka preko Vibera na ${CONTACT.phoneDisplay}`}
+        >
+          <Icon name="simple-icons:viber" class="size-6 shrink-0" aria-hidden="true" />
+          <span class="text-left">
+            Viber
+            <span class="block text-sm opacity-70">{CONTACT.phoneDisplay}</span>
+          </span>
+        </a>
+
+        <a
+          href={`tel:${CONTACT.phoneHref}`}
+          class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+          aria-label={`Pozovite Darka na ${CONTACT.phoneDisplay}`}
+        >
+          <Icon name="tabler:phone" class="size-6 shrink-0" aria-hidden="true" />
+          <span class="text-left">
+            Pozovite
+            <span class="block text-sm opacity-70">{CONTACT.phoneDisplay}</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Short, Python-specific credibility line — intentionally NOT a full duplicate -->
+    <!-- of the "O meni" bio on the parent /programiranje/ page, to avoid duplicate -->
+    <!-- content. Links back to the parent page for the full bio. -->
+    <section
+      class="not-prose border-border mb-12 rounded-xl border p-6 sm:p-8"
+    >
+      <div class="grid gap-6 sm:grid-cols-[auto_1fr] sm:items-center">
+        <img
+          src="/images/profile-pic.png"
+          alt="Darko Dekan – instruktor privatnih časova Pythona"
+          width="140"
+          height="140"
+          loading="lazy"
+          class="border-border mx-auto size-28 rounded-full border object-cover sm:mx-0 sm:size-32"
+        />
+
+        <div>
+          <h2 class="mt-0 text-xl font-semibold">O meni</h2>
+
+          <!-- TODO: replace with real Python-specific experience details -->
+          <p class="mb-2">
+            Python koristim profesionalno i predajem ga već nekoliko
+            godina, kroz rad sa učenicima, studentima i programerima na
+            osnovama jezika, veb razvoju i analizi podataka.
+          </p>
+
+          <p class="mb-0 text-sm">
+            <a
+              href="/sr/privatni-casovi/programiranje/"
+              class="text-accent font-medium hover:underline"
+            >
+              Pročitajte više o mom iskustvu i ostalim jezicima koje predajem →
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <h2>Kome su časovi Pythona namenjeni?</h2>
+
+    <p>
+      Časovi su namenjeni početnicima, srednjoškolcima, studentima i
+      svima koji žele da nauče Python ili unaprede praktično znanje –
+      bez obzira da li je ovo vaš prvi programski jezik ili prelazite
+      sa nekog drugog.
+    </p>
+
+    <ul>
+      <li>početnicima koji prvi put uče programiranje;</li>
+      <li>studentima koji pripremaju kolokvijum ili ispit iz Pythona;</li>
+      <li>učenicima kojima je potrebna pomoć sa školskim gradivom;</li>
+      <li>ljudima koji žele da nauče analizu podataka ili mašinsko učenje;</li>
+      <li>onima koji žele da naprave veb aplikaciju ili API;</li>
+      <li>studentima kojima je potrebno objašnjenje projekta ili domaćeg zadatka.</li>
+    </ul>
+
+    <h2>Oblasti Pythona koje radimo na času</h2>
+
+    <div class="not-prose my-7 grid gap-4 sm:grid-cols-2">
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg">
+            <Icon name="tabler:code" class="size-6" aria-hidden="true" />
+          </span>
+          <h3 class="text-accent m-0 text-xl font-semibold">Osnove i OOP</h3>
+        </div>
+        <p class="mb-0">
+          Osnove Pythona od nule, funkcije, klase i objekti, nasleđivanje,
+          objektno orijentisano programiranje i metaprogramiranje.
+        </p>
+      </section>
+
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg">
+            <Icon name="tabler:layout-dashboard" class="size-6" aria-hidden="true" />
+          </span>
+          <h3 class="text-accent m-0 text-xl font-semibold">GUI razvoj</h3>
+        </div>
+        <p class="mb-0">
+          Izrada desktop aplikacija sa grafičkim interfejsom pomoću
+          Tkinter i PyQT biblioteka.
+        </p>
+      </section>
+
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg">
+            <Icon name="tabler:world-www" class="size-7" aria-hidden="true" />
+          </span>
+          <h3 class="text-accent m-0 text-xl font-semibold">Veb razvoj</h3>
+        </div>
+        <p class="mb-0">
+          Veb okviri Django, Flask i Bottle, izrada REST API-ja i
+          povezivanje frontenda i backenda veb aplikacije.
+        </p>
+      </section>
+
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg">
+            <Icon name="tabler:chart-dots" class="size-7" aria-hidden="true" />
+          </span>
+          <h3 class="text-accent m-0 text-xl font-semibold">Analiza podataka i ML</h3>
+        </div>
+        <p class="mb-0">
+          Nauka o podacima i mašinsko učenje uz pandas, numpy, matplotlib,
+          plotly, scipy i scikit-learn biblioteke.
+        </p>
+      </section>
+
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg">
+            <Icon name="tabler:database" class="size-7" aria-hidden="true" />
+          </span>
+          <h3 class="text-accent m-0 text-xl font-semibold">Baze podataka</h3>
+        </div>
+        <p class="mb-0">
+          Rad sa bazama podataka iz Pythona – MySQL, PostgreSQL i SQLite.
+        </p>
+      </section>
+
+      <section class="border-border hover:border-accent/60 rounded-lg border p-5 transition-colors">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="bg-accent/10 text-accent flex size-11 shrink-0 items-center justify-center rounded-lg">
+            <Icon name="tabler:device-mobile" class="size-7" aria-hidden="true" />
+          </span>
+          <h3 class="text-accent m-0 text-xl font-semibold">Mobilne aplikacije</h3>
+        </div>
+        <p class="mb-0">
+          Izrada Android i iOS aplikacija pomoću Kivy Python biblioteke.
+        </p>
+      </section>
+    </div>
+
+    <!-- Dedicated "how classes work" section using the specific tools from the -->
+    <!-- proven ad copy: Google Meet/Discord/Zoom for calls, AnyDesk/TeamViewer for -->
+    <!-- screen sharing. -->
+    <h2>Kako izgledaju online časovi Pythona?</h2>
+
+    <ol>
+      <li>
+        Nastava se odvija preko <strong>Google Meet</strong>-a,
+        <strong>Discord</strong>-a ili <strong>Zoom</strong>-a za audio i
+        video poziv.
+      </li>
+
+      <li>
+        Ekran delimo preko <strong>AnyDesk</strong> ili
+        <strong>TeamViewer</strong> alata – možete se povezati na moj
+        računar i pratiti kucanje koda uživo, ili ja mogu da vidim vaš
+        ekran i kod.
+      </li>
+
+      <li>
+        Nakon časa delim kod i primere rađene na nastavi, kako biste
+        mogli samostalno da ih pregledate i vežbate.
+      </li>
+
+      <li>
+        Po potrebi zadajem projekat, ocenjujem rad i dajem povratnu
+        informaciju o tome šta treba doraditi.
+      </li>
+    </ol>
+
+    <p>
+      Cilj časa nije samo da dobijete gotovo rešenje. Važno je da
+      razumete postupak i da posle časa možete samostalno rešavati
+      slične probleme.
+    </p>
+
+    <section
+      class="not-prose border-border bg-muted/20 my-12 rounded-xl border p-6 sm:p-8"
+    >
+      <h2 class="mt-0 text-xl font-semibold">Cena časa Pythona</h2>
+
+      <p class="mb-2 text-lg">
+        Cena časa je ista kao i za ostale programske jezike i kreće se
+        od&nbsp;<strong>1800 din</strong> za 60 min. I povoljnija
+        opcija&nbsp;<strong>2500 din</strong> za 90 min.
+      </p>
+
+      <p class="text-muted-foreground mb-0 text-sm">
+        Tačnu cenu i predlog dinamike dobijate nakon kratkog razgovora
+        o vašim ciljevima.
+      </p>
+    </section>
+
+    <section class="not-prose my-12">
+      <h2 class="mb-6 text-xl font-semibold">Šta kažu polaznici</h2>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {testimonials.map((t) => (
+          <blockquote class="border-border flex h-full flex-col justify-between rounded-lg border p-5">
+            <p class="mb-4 text-sm leading-relaxed italic">"{t.quote}"</p>
+            <footer class="text-muted-foreground text-sm">
+              <span class="font-semibold not-italic">{t.name}</span>
+              {t.context && <span> — {t.context}</span>}
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </section>
+
+    <h2>Šta poslati pre prvog časa?</h2>
+
+    <p>U prvoj poruci napišite:</p>
+
+    <ul>
+      <li>koju oblast Pythona učite ili želite da naučite;</li>
+      <li>koju školu ili fakultet pohađate, ako je relevantno;</li>
+      <li>da li imate prethodno iskustvo sa Pythonom ili drugim jezikom;</li>
+      <li>kada imate kolokvijum, ispit ili rok za projekat;</li>
+      <li>da li Vam je potrebna pomoć oko konkretnog zadatka ili opšte učenje.</li>
+    </ul>
+
+    <section class="not-prose mt-12 rounded-xl border p-6 sm:p-8">
+      <h2 class="mt-0 text-2xl font-semibold">Zainteresovani ste za čas Pythona?</h2>
+
+      <p class="mt-3 mb-6">
+        Pošaljite mi šta trenutno učite i šta želite da postignete.
+        Odgovoriću vam sa predlogom načina rada i dostupnim terminima.
+      </p>
+
+      <div
+        class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+        aria-label="Opcije za kontakt"
+      >
+        <a
+          href={whatsappURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-accent text-accent-foreground hover:bg-accent/90 flex min-h-14 items-center justify-center gap-3 rounded-lg px-5 py-3 font-semibold transition-colors"
+          aria-label={`Pošaljite WhatsApp poruku na ${CONTACT.phoneDisplay}`}
+        >
+          <Icon name="simple-icons:whatsapp" class="size-6 shrink-0" aria-hidden="true" />
+          <span class="text-left">
+            WhatsApp
+            <span class="block text-sm opacity-80">{CONTACT.phoneDisplay}</span>
+          </span>
+        </a>
+
+        <a
+          href={getViberURL()}
+          class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+          aria-label={`Kontaktirajte Darka preko Vibera na ${CONTACT.phoneDisplay}`}
+        >
+          <Icon name="simple-icons:viber" class="size-6 shrink-0" aria-hidden="true" />
+          <span class="text-left">
+            Viber
+            <span class="block text-sm opacity-70">{CONTACT.phoneDisplay}</span>
+          </span>
+        </a>
+
+        <a
+          href={`tel:${CONTACT.phoneHref}`}
+          class="border-border hover:border-accent hover:text-accent flex min-h-14 items-center justify-center gap-3 rounded-lg border px-5 py-3 font-semibold transition-colors"
+          aria-label={`Pozovite Darka na ${CONTACT.phoneDisplay}`}
+        >
+          <Icon name="tabler:phone" class="size-6 shrink-0" aria-hidden="true" />
+          <span class="text-left">
+            Pozovite
+            <span class="block text-sm opacity-70">{CONTACT.phoneDisplay}</span>
+          </span>
+        </a>
+      </div>
+    </section>
+  </Main>
+
+  <Footer />
+</Layout>

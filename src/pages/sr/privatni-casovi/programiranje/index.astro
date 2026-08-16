@@ -15,10 +15,10 @@ const canonicalURL =
   "https://darkodekan.com/sr/privatni-casovi/programiranje/";
 
 const pageTitle =
-  "Privatni časovi programiranja – Python, Java, C/C++/C#, JavaScript | Darko Dekan";
+  "Privatni časovi programiranja – Python, Java, C++, C#, JS | Darko Dekan";
 
 const pageDescription =
-  "Privatni online časovi programiranja za početnike, učenike i studente. Python, Java, C/C++/C#, JavaScript, algoritmi, OOP, veb aplikacije, priprema kolokvijuma, ispita i praktični projekti.";
+  "Privatni online časovi programiranja: Python, Java, C/C++, C#, JavaScript. Priprema kolokvijuma, ispita i praktični projekti uz individualan rad.";
 
 const whatsappURL = getWhatsAppURL(
   "Zdravo Darko, zanimaju me privatni časovi programiranja."
@@ -31,22 +31,25 @@ const emailURL = getEmailURL(
 // TODO: replace with your real testimonials (name + optional context, e.g. "student, FTN")
 const testimonials = [
   {
-    quote: "Profesor ima izuzetno znanje i sjajan način objašnjavanja. Vrlo je strpljiv i uvek se potrudi da sve bude jasno i razumljivo. Lekcije su prijatne, zanimljive i korisne, za svaku preporuku!",
-    name: "Irena",
+    quote: "Profesionalac sa odličnim znanjem u oblasti. Spremao me je iz programiranja 2 meseca i osvojio sam maksimalan broj poena. Veoma fleksibilan po pitanju zakazivanja časova.",
+    name: "Dušan",
     context: "student",
     rating: 5,
+    date: "2026-08-15",
   },
   {
-    quote: "Koncizan, jasan, sve najbolje.",
-    name: "Olivera",
-    context: "majka učenice",
-    rating: 5,
-  },
-  {
-    quote: "Baš je zadovoljan tvojim načinom predavanja ove godine, kao i ja. Ok si bio i prošle godine, ali sada si baš profi. Drago mi je što učim ovaj predmet sa tobom.",
-    name: "Ana Marija",
+    quote: "Odlično iskustvo sa profesorom, brz i lak dogovor. Odlični časovi u skladu sa potrebama studenata... Preporučujem!",
+    name: "Dimitrije",
     context: "student",
     rating: 5,
+    date: "2026-03-10",
+  },
+  {
+    quote: "Darko je bio učitelj mom sinu, podučavao ga je iz nekoliko univerzitetskih predmeta. Veoma je stručan, iskren, strpljiv, fleksibilan i pouzdan, te ima smiren pristup pun razumevanja. Toplo preporučujem. Hvala, Darko!",
+    name: "Miši",
+    context: "roditelj studenta",
+    rating: 5,
+    date: "2026-02-14",
   },
 ];
 
@@ -68,6 +71,10 @@ const reviewData = {
   },
   review: testimonials.map((t) => ({
     "@type": "Review",
+    itemReviewed: {
+      "@type": "Service",
+      name: "Privatni časovi programiranja",
+    },
     reviewRating: {
       "@type": "Rating",
       ratingValue: t.rating,
@@ -77,6 +84,7 @@ const reviewData = {
       "@type": "Person",
       name: t.name,
     },
+    datePublished: t.date,
     reviewBody: t.quote,
   })),
 };
@@ -97,6 +105,53 @@ const structuredData = {
     name: CONTACT.name,
     url: "https://darkodekan.com/",
   },
+};
+
+const faqData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Kome su privatni časovi programiranja namenjeni?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Časovi su namenjeni početnicima, srednjoškolcima, studentima i svima koji žele da bolje razumeju programiranje ili unaprede praktično znanje – od potpunih početnika do kandidata koji se pripremaju za tehnički intervju.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Koje programske jezike i oblasti pokrivaju časovi?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Časovi pokrivaju Python, Javu, C/C++, C#, JavaScript, razvoj veb aplikacija, algoritme i strukture podataka, kao i pripremu fakultetskih kolokvijuma i ispita.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Koliko košta čas programiranja?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Cena časa zavisi od oblasti i učestalosti i kreće se od 1800 dinara za 60 minuta, uz povoljniju opciju od 2500 dinara za 90 minuta. Tačna cena se dogovara nakon kratkog razgovora o ciljevima.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Da li se časovi održavaju online?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Da, časovi se održavaju online uz razgovor, deljenje ekrana i zajedničko pisanje koda, u razvojnom okruženju koje već koristite ili uz pomoć oko instalacije alata pre prvog časa.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Šta treba da pošaljem pre prvog časa?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Potrebno je da napišete koji programski jezik ili predmet učite, koju školu ili fakultet pohađate, koju oblast trenutno radite, kada imate kolokvijum ili ispit i koliko prethodnog iskustva imate.",
+      },
+    },
+  ],
 };
 
 const breadcrumbData = {
@@ -154,19 +209,38 @@ const breadcrumbData = {
     type="application/ld+json"
     set:html={JSON.stringify(reviewData)}
   />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(faqData)}
+    />
   </Fragment>
 
   <Header />
 
+  <nav aria-label="Breadcrumb" class="mx-auto max-w-3xl px-4 pt-6 sm:px-6">
+    <ol class="text-muted-foreground flex flex-wrap items-center gap-1 text-sm">
+      <li>
+        <a href="/sr/" class="hover:text-accent">Početna</a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li>
+        <a href="/sr/privatni-casovi/" class="hover:text-accent">Privatni časovi</a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li aria-current="page" class="text-foreground font-medium">Programiranje</li>
+    </ol>
+  </nav>
+
   <Main
-    pageTitle="Privatni časovi programiranja - Python, Java, C/C++/C#, JavaScript"
-    pageDesc="Privatni online časovi prilagođeni vašem predznanju i ciljevima."
+    pageTitle="Privatni časovi programiranja (Python, Java, C/C++, C#, JavaScript, Web Dev)"
+    pageDesc="Individualni online časovi prilagođeni vašem predznanju, fakultetskom programu i ciljevima."
   class="app-prose pt-10 sm:pt-14"  >
 
     <figure class="not-prose mb-10">
     <img
       src="/images/privatni_casovi_banner.png"
-      alt="Privatni online časovi programiranja"
+      alt="Privatni online časovi programiranja – Python, Java, C/C++, C#, JavaScript"
       width="1200"
       height="675"
       loading="eager"
@@ -175,7 +249,7 @@ const breadcrumbData = {
     />
 
     <figcaption class="text-muted-foreground mt-2 text-center text-sm">
-      Privatni online časovi Pythona, Jave, JavaScripta, C/C++/C# i razvoja veb aplikacija. 062 100 5941.
+      Privatni online časovi Pythona, Jave, C/C++, C# i JavaScripta, kao i razvoja veb aplikacija. 062 100 5941.
     </figcaption>
   </figure>
 
@@ -184,7 +258,8 @@ const breadcrumbData = {
       class="not-prose border-border bg-muted/20 mb-10 rounded-xl border p-6 sm:p-8"
     >
       <p class="m-0 text-lg leading-relaxed">
-        Učite programiranje uz individualna objašnjenja, praktične
+        Privatni časovi programiranja iz Pythona, Jave, C/C++, C#
+        i JavaScripta – uz individualna objašnjenja, praktične
         primere i zadatke prilagođene vašem trenutnom nivou.
       </p>
 
@@ -272,7 +347,7 @@ const breadcrumbData = {
       <div class="grid gap-6 sm:grid-cols-[auto_1fr] sm:items-center">
         <img
           src="/images/profile-pic.png"
-          alt="Darko Dekan"
+          alt="Darko Dekan – instruktor privatnih časova programiranja"
           width="140"
           height="140"
           loading="lazy"
@@ -331,11 +406,17 @@ const breadcrumbData = {
       </h3>
     </div>
 
-    <p class="mb-0">
-      Osnove jezika, funkcije, klase, objektno orijentisano
-      programiranje, algoritmi, rad sa podacima, automatizacija,
-      Flask i Django.
+    <p class="mb-3">
+      Osnove jezika, OOP, veb razvoj, analiza podataka i mašinsko
+      učenje.
     </p>
+
+    <a
+      href="/sr/privatni-casovi/programiranje/python/"
+      class="text-accent inline-flex items-center gap-1 text-sm font-medium hover:underline"
+    >
+      Saznajte više o Python časovima →
+    </a>
   </section>
 
   <section
@@ -610,7 +691,7 @@ const breadcrumbData = {
     </ul>
 
     <section
-      class="not-prose border-border mt-12 rounded-xl border p-6 sm:p-8"
+      class="not-prose mt-12 rounded-xl border p-6 sm:p-8"
     >
       <h2 class="mt-0 text-2xl font-semibold">
         Zainteresovani ste za čas?

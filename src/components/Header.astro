@@ -40,21 +40,14 @@ const languagePairs: Record<string, string> = {
   "/tutoring/": "/sr/privatni-casovi/",
   "/sr/privatni-casovi/": "/tutoring/",
 
-  "/tutoring/programming/":
-    "/sr/privatni-casovi/programiranje/",
-  "/sr/privatni-casovi/programiranje/":
-    "/tutoring/programming/",
+  "/tutoring/programming/": "/sr/privatni-casovi/programiranje/",
+  "/sr/privatni-casovi/programiranje/": "/tutoring/programming/",
 
-  "/tutoring/mathematics/":
-    "/sr/privatni-casovi/matematika/",
-  "/sr/privatni-casovi/matematika/":
-    "/tutoring/mathematics/",
+  "/tutoring/programming/python/": "/sr/privatni-casovi/programiranje/python/",
+  "/sr/privatni-casovi/programiranje/python/": "/tutoring/programming/python/",
 
-  "/programming/": "/sr/privatni-casovi/programiranje/",
-  "/sr/programiranje/": "/programming/",
-
-  "/mathematics/": "/sr/privatni-casovi/matematika/",
-  "/sr/matematika/": "/mathematics/",
+  "/tutoring/mathematics/": "/sr/privatni-casovi/matematika/",
+  "/sr/privatni-casovi/matematika/": "/tutoring/mathematics/",
 };
 
 const alternatePath = languagePairs[normalizedPath];
@@ -144,6 +137,54 @@ const languageHreflang = isSerbianPage ? "en" : "sr-RS";
               </li>
               <li>
                 <a
+                  href={addBase("/sr/privatni-casovi/programiranje/")}
+                  class:list={[
+                    "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors block",
+                    {
+                      "bg-accent/10 text-accent font-semibold":
+                        normalizedPath === "/sr/privatni-casovi/programiranje/",
+                      "text-foreground/75 hover:bg-muted hover:text-foreground":
+                        normalizedPath !== "/sr/privatni-casovi/programiranje/",
+                    },
+                  ]}
+                  aria-current={
+                    normalizedPath === "/sr/privatni-casovi/programiranje/"
+                      ? "page"
+                      : undefined
+                  }
+                >
+                  Programiranje
+                </a>
+              </li>
+              <li>
+                <a
+                  href={addBase("/sr/privatni-casovi/programiranje/python/")}
+                  class:list={[
+                    "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors block",
+                    {
+                      "bg-accent/10 text-accent font-semibold":
+                        normalizedPath.startsWith(
+                          "/sr/privatni-casovi/programiranje/python/"
+                        ),
+                      "text-foreground/75 hover:bg-muted hover:text-foreground":
+                        !normalizedPath.startsWith(
+                          "/sr/privatni-casovi/programiranje/python/"
+                        ),
+                    },
+                  ]}
+                  aria-current={
+                    normalizedPath.startsWith(
+                      "/sr/privatni-casovi/programiranje/python/"
+                    )
+                      ? "page"
+                      : undefined
+                  }
+                >
+                  Python
+                </a>
+              </li>
+              <li>
+                <a
                   href={addBase("/sr/privatni-casovi/matematika/")}
                   class:list={[
                     "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors block",
@@ -167,33 +208,6 @@ const languageHreflang = isSerbianPage ? "en" : "sr-RS";
                   }
                 >
                   Matematika
-                </a>
-              </li>
-              <li>
-                <a
-                  href={addBase("/sr/privatni-casovi/programiranje/")}
-                  class:list={[
-                    "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors block",
-                    {
-                      "bg-accent/10 text-accent font-semibold":
-                        normalizedPath.startsWith(
-                          "/sr/privatni-casovi/programiranje/"
-                        ),
-                      "text-foreground/75 hover:bg-muted hover:text-foreground":
-                        !normalizedPath.startsWith(
-                          "/sr/privatni-casovi/programiranje/"
-                        ),
-                    },
-                  ]}
-                  aria-current={
-                    normalizedPath.startsWith(
-                      "/sr/privatni-casovi/programiranje/"
-                    )
-                      ? "page"
-                      : undefined
-                  }
-                >
-                  Programiranje
                 </a>
               </li>
             </>
@@ -220,54 +234,71 @@ const languageHreflang = isSerbianPage ? "en" : "sr-RS";
               </li>
               <li>
                 <a
-                  href={addBase("/mathematics/")}
+                  href={addBase("/tutoring/programming/")}
                   class:list={[
                     "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors block",
                     {
                       "bg-accent/10 text-accent font-semibold":
-                        normalizedPath === "/mathematics/" ||
-                        normalizedPath.startsWith("/tutoring/mathematics/"),
+                        normalizedPath === "/tutoring/programming/",
                       "text-foreground/75 hover:bg-muted hover:text-foreground":
-                        !(
-                          normalizedPath === "/mathematics/" ||
-                          normalizedPath.startsWith("/tutoring/mathematics/")
+                        normalizedPath !== "/tutoring/programming/",
+                    },
+                  ]}
+                  aria-current={
+                    normalizedPath === "/tutoring/programming/"
+                      ? "page"
+                      : undefined
+                  }
+                >
+                  Programming
+                </a>
+              </li>
+              <li>
+                <a
+                  href={addBase("/tutoring/programming/python/")}
+                  class:list={[
+                    "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors block",
+                    {
+                      "bg-accent/10 text-accent font-semibold":
+                        normalizedPath.startsWith(
+                          "/tutoring/programming/python/"
+                        ),
+                      "text-foreground/75 hover:bg-muted hover:text-foreground":
+                        !normalizedPath.startsWith(
+                          "/tutoring/programming/python/"
                         ),
                     },
                   ]}
                   aria-current={
-                    normalizedPath === "/mathematics/" ||
+                    normalizedPath.startsWith(
+                      "/tutoring/programming/python/"
+                    )
+                      ? "page"
+                      : undefined
+                  }
+                >
+                  Python
+                </a>
+              </li>
+              <li>
+                <a
+                  href={addBase("/tutoring/mathematics/")}
+                  class:list={[
+                    "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors block",
+                    {
+                      "bg-accent/10 text-accent font-semibold":
+                        normalizedPath.startsWith("/tutoring/mathematics/"),
+                      "text-foreground/75 hover:bg-muted hover:text-foreground":
+                        !normalizedPath.startsWith("/tutoring/mathematics/"),
+                    },
+                  ]}
+                  aria-current={
                     normalizedPath.startsWith("/tutoring/mathematics/")
                       ? "page"
                       : undefined
                   }
                 >
                   Mathematics
-                </a>
-              </li>
-              <li>
-                <a
-                  href={addBase("/programming/")}
-                  class:list={[
-                    "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors block",
-                    {
-                      "bg-accent/10 text-accent font-semibold":
-                        normalizedPath === "/programming/" ||
-                        normalizedPath.startsWith("/tutoring/programming/"),
-                      "text-foreground/75 hover:bg-muted hover:text-foreground":
-                        !(
-                          normalizedPath === "/programming/" ||
-                          normalizedPath.startsWith("/tutoring/programming/")
-                        ),
-                    },
-                  ]}
-                  aria-current={
-                    normalizedPath === "/programming/" ||
-                    normalizedPath.startsWith("/tutoring/programming/")
-                      ? "page"
-                      : undefined
-                  }
-                >
-                  Programming
                 </a>
               </li>
             </>
