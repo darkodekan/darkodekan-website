@@ -29,19 +29,27 @@ const emailURL = getEmailURL("Python privatni časovi programiranja");
 // TODO: replace with your real Python-specific testimonials if/when available
 // Reusing general testimonials is intentional for now to avoid an empty section;
 // swap in Python-specific quotes once you have them to further differentiate this page.
+
+
 const testimonials = [
   {
-    quote:
-      "Profesor ima izuzetno znanje i sjajan način objašnjavanja. Vrlo je strpljiv i uvek se potrudi da sve bude jasno i razumljivo. Lekcije su prijatne, zanimljive i korisne, za svaku preporuku!",
-    name: "Irena",
+    quote: "Profesionalac sa odličnim znanjem u oblasti. Spremao me je iz programiranja 2 meseca i osvojio sam maksimalan broj poena. Veoma fleksibilan po pitanju zakazivanja časova.",
+    name: "Dušan",
+    context: "student",
+    rating: 5,
+    date: "2026-08-15",
+  },
+  {
+    quote: "Odlično iskustvo sa profesorom, brz i lak dogovor. Odlični časovi u skladu sa potrebama studenata... Preporučujem!",
+    name: "Dimitrije",
     context: "student",
     rating: 5,
     date: "2026-03-10",
   },
   {
-    quote: "Koncizan, jasan, sve najbolje.",
-    name: "Olivera",
-    context: "majka učenice",
+    quote: "Darko je bio učitelj mom sinu, podučavao ga je iz nekoliko univerzitetskih predmeta. Veoma je stručan, iskren, strpljiv, fleksibilan i pouzdan, te ima smiren pristup pun razumevanja. Toplo preporučujem. Hvala, Darko!",
+    name: "Miši",
+    context: "roditelj studenta",
     rating: 5,
     date: "2026-02-14",
   },
@@ -505,21 +513,72 @@ const breadcrumbData = {
       slične probleme.
     </p>
 
-    <section
-      class="not-prose border-border bg-muted/20 my-12 rounded-xl border p-6 sm:p-8"
-    >
-      <h2 class="mt-0 text-xl font-semibold">Cena časa Pythona</h2>
+    <section class="not-prose border-border bg-muted/20 rounded-xl border p-6 sm:p-8 my-12">
+      <div class="mx-auto mb-8 max-w-xl text-center">
+        <h2 class="mt-0 mb-2 text-2xl font-bold">Cene časova</h2>
+        <p class="text-muted-foreground text-sm m-0">
+          Transparentne cene za individualne časove, rešavanje zadataka i pripremu ispita. Mogućnost dogovora oko paketa časova i dugoročne saradnje nakon prvog časa.
+        </p>
+      </div>
 
-      <p class="mb-2 text-lg">
-        Cena časa je ista kao i za ostale programske jezike i kreće se
-        od&nbsp;<strong>1800 din</strong> za 60 min. I povoljnija
-        opcija&nbsp;<strong>2500 din</strong> za 90 min.
-      </p>
+      <div class="mx-auto grid max-w-3xl gap-6 md:grid-cols-2">
+        <!-- Standardni čas (60 min) -->
+        <div class="border-border bg-card text-card-foreground flex flex-col justify-between rounded-xl border p-6 shadow-sm">
+          <div>
+            <h3 class="mt-0 text-lg font-semibold">Standardni čas</h3>
+            <p class="text-muted-foreground mt-1 mb-4 text-xs">Za rešavanje konkretnih zadataka, objašnjenje koncepata i savladavanje gradiva</p>
+            <div class="my-4 flex items-baseline gap-1">
+              <span class="text-foreground text-3xl font-extrabold">1800 din</span>
+              <span class="text-muted-foreground text-sm">/ 60 min</span>
+            </div>
+            <ul class="text-sm mb-6 space-y-2.5 p-0 list-none">
+              <li class="flex items-center gap-2">✓ Individualni rad sa pozivom i deljenje ekrana</li>
+              <li class="flex items-center gap-2">✓ Kod i beleške sa časa ostaju vama</li>
+              <li class="flex items-center gap-2">✓ Pronalaženje i ispravljanje grešaka u kodu</li>
+            </ul>
+          </div>
+          <a
+            href={whatsappURL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border-border hover:border-accent hover:text-accent flex min-h-11 w-full items-center justify-center rounded-lg border text-sm font-semibold transition-colors text-center"
+          >
+            Zakaži 60 min
+          </a>
+        </div>
 
-      <p class="text-muted-foreground mb-0 text-sm">
-        Tačnu cenu i predlog dinamike dobijate nakon kratkog razgovora
-        o vašim ciljevima.
-      </p>
+        <!-- 90-minutni sprint (Istaknuto) -->
+        <div class="border-accent bg-card text-card-foreground relative flex flex-col justify-between rounded-xl border-2 p-6 shadow-md">
+          <span class="bg-accent text-accent-foreground absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-xs font-bold uppercase tracking-wider">Najpopularnije</span>
+          <div>
+            <h3 class="mt-0 text-lg font-semibold">Produženi čas</h3>
+            <p class="text-muted-foreground mt-1 mb-4 text-xs">Produženi termin za složenije teme, projekte i pripremu ispita</p>
+            <div class="my-4 flex items-baseline gap-1">
+              <span class="text-foreground text-3xl font-extrabold">2500 din</span>
+              <span class="text-muted-foreground text-sm">/ 90 min</span>
+            </div>
+            <ul class="text-sm mb-6 space-y-2.5 p-0 list-none">
+              <li class="flex items-center gap-2">✓ Produženi rad u trajanju od 90 minuta</li>
+              <li class="flex items-center gap-2">✓ OOP, strukture podataka, Django ili Flask</li>
+              <li class="flex items-center gap-2">✓ Ciljana priprema za kolokvijume i ispite</li>
+              <li class="flex items-center gap-2">✓ Pregled koda i smernice za projekte</li>
+            </ul>
+          </div>
+          <a
+            href={whatsappURL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-accent text-accent-foreground hover:bg-accent/90 flex min-h-11 w-full items-center justify-center rounded-lg text-sm font-semibold transition-colors text-center"
+          >
+            Zakaži 90 min
+          </a>
+        </div>
+      </div>
+
+      <div class="text-muted-foreground mt-6 text-center text-xs">
+        <p class="mb-1">Želite paket časova (npr. mesečne pakete) ili dugoročniju mentorsku podršku?</p>
+        <p class="m-0">O uslovima i prilagođenom rasporedu možemo porazgovarati nakon našeg prvog zajedničkog časa.</p>
+      </div>
     </section>
 
     <section class="not-prose my-12">
