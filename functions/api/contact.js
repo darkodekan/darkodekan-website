@@ -15,7 +15,7 @@ export async function onRequestPost(context) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        from: "Website Contact <onboarding@resend.dev>",
+        from: "Website Contact <contact@send.darkodekan.com>",
         to: "contact@darkodekan.com",
         subject: `New message from ${name}`,
         reply_to: email,
