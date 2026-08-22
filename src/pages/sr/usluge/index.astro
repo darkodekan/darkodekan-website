@@ -1,0 +1,134 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { Icon } from "astro-icon/components";
+
+const siteUrl = "https://darkodekan.com";
+const canonicalUrl = `${siteUrl}/sr/services`;
+const alternateEnUrl = `${siteUrl}/services`;
+const pageTitle = "Programerske Usluge | Automatizacija, Web Razvoj i Debagovanje | Darko Dekan";
+const pageDescription = "Profesionalne programerske usluge - automatizacija, web razvoj i debagovanje. Iskustvo sa Python-om, Java-om i drugim tehnologijama.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Usluge softverskog razvoja",
+  "provider": {
+    "@type": "Person",
+    "name": "Darko Dekan",
+    "url": siteUrl
+  },
+  "areaServed": "Worldwide",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Programerske Usluge",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Automatizacija",
+          "description": "Automatizacija repetitivnih zadataka, workflow-a i obrade podataka pomoću prilagođenih skripti i alata."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Web Razvoj",
+          "description": "Izrada sajtova i web aplikacija po meri, od jednostavnih landing stranica do full-stack projekata."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Debagovanje",
+          "description": "Pronalaženje i otklanjanje grešaka u Python, Java i drugim projektima."
+        }
+      }
+    ]
+  }
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="sr" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={alternateEnUrl} />
+    <link rel="alternate" hreflang="x-default" href={alternateEnUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:locale" content="sr_RS" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <Header />
+
+  <main id="main-content" class="app-layout flex-1 pt-10">
+    <section class="py-10">
+      <h1 class="text-4xl font-bold sm:text-5xl">Programerske usluge</h1>
+      <p class="mt-6 max-w-2xl text-xl text-foreground/80 leading-relaxed">
+        Praktična i pouzdana pomoć u razvoju softvera, za pojedince i firme. Od automatizacije 
+        repetitivnih zadataka, preko izrade web aplikacija, do pronalaženja tvrdoglavih grešaka 
+        u kodu — donosim iskustvo iz Python-a, Java-e i drugih tehnologija.
+      </p>
+
+      <!-- Service Cards -->
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="border-border rounded-2xl border p-8">
+          <Icon name="tabler:robot" class="size-8 text-accent" />
+          <h2 class="mt-4 text-2xl font-semibold">Automatizacija</h2>
+          <p class="mt-3 text-foreground/70">Uštedite vreme automatizacijom repetitivnih zadataka, workflow-a i obrade podataka pomoću prilagođenih skripti i alata.</p>
+        </div>
+
+        <div class="border-border rounded-2xl border p-8">
+          <Icon name="tabler:code" class="size-8 text-accent" />
+          <h2 class="mt-4 text-2xl font-semibold">Web razvoj</h2>
+          <p class="mt-3 text-foreground/70">Izrada sajtova i web aplikacija po meri, korišćenjem modernih alata — od jednostavnih landing stranica do full-stack projekata.</p>
+        </div>
+
+        <div class="border-border rounded-2xl border p-8">
+          <Icon name="tabler:bug" class="size-8 text-accent" />
+          <h2 class="mt-4 text-2xl font-semibold">Debagovanje</h2>
+          <p class="mt-3 text-foreground/70">Zaglavili ste na grešci koja neće da nestane? Pomažem u pronalaženju i otklanjanju problema u Python, Java i drugim projektima.</p>
+        </div>
+      </div>
+
+      <!-- Credibility Section -->
+      <div class="mt-16 border-t pt-10">
+        <h2 class="text-2xl font-semibold">Zašto raditi sa mnom?</h2>
+        <div class="mt-6 grid gap-6 md:grid-cols-3">
+          <div>
+            <h3 class="font-semibold text-lg">Praktična rešenja</h3>
+            <p class="text-sm text-foreground/70 mt-1">Fokus na rešavanju vašeg konkretnog problema, bez nepotrebnog usložnjavanja.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">Jasna komunikacija</h3>
+            <p class="text-sm text-foreground/70 mt-1">Redovne informacije o napretku i objašnjenja bez viška stručnog žargona.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">Iskustvo sa više Tehnologija</h3>
+            <p class="text-sm text-foreground/70 mt-1">Radim u Python-u, Java-i i drugim jezicima i tehnologijama po potrebi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

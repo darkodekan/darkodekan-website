@@ -1,0 +1,118 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { Icon } from "astro-icon/components";
+
+const siteUrl = "https://darkodekan.com";
+const canonicalUrl = `${siteUrl}/contact`;
+const alternateSrUrl = `${siteUrl}/sr/contact`;
+const pageTitle = "Contact | Darko Dekan";
+const pageDescription = "Get in touch about programming services, tutoring, or a project you'd like help with.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": pageTitle,
+  "url": canonicalUrl,
+  "about": {
+    "@type": "Person",
+    "name": "Darko Dekan",
+    "url": siteUrl
+  }
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    <link rel="alternate" hreflang="sr" href={alternateSrUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="sr_RS" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <Header />
+
+  <main id="main-content" class="app-layout flex-1 pt-10">
+    <section class="py-10">
+      <h1 class="text-4xl font-bold sm:text-5xl">Get in Touch</h1>
+      <p class="mt-6 max-w-2xl text-xl text-foreground/80 leading-relaxed">
+        Whether it's a programming project, a debugging headache, or a tutoring inquiry —
+        send a message and I'll get back to you as soon as I can.
+      </p>
+
+      <!-- Direct Contact Options -->
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <a
+          href="https://wa.me/381621005941"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border-border hover:border-accent/60 group flex items-center gap-3 rounded-xl border p-4 transition-all hover:bg-muted/30"
+        >
+          <Icon name="tabler:brand-whatsapp" class="size-6 text-accent" />
+          <div>
+            <p class="font-medium group-hover:text-accent">WhatsApp</p>
+            <p class="text-xs text-foreground/60">Message directly</p>
+          </div>
+        </a>
+
+        <a
+          href="viber://chat?number=%2B381621005941"
+          class="border-border hover:border-accent/60 group flex items-center gap-3 rounded-xl border p-4 transition-all hover:bg-muted/30"
+        >
+          <Icon name="tabler:brand-viber" class="size-6 text-accent" />
+          <div>
+            <p class="font-medium group-hover:text-accent">Viber</p>
+            <p class="text-xs text-foreground/60">Message directly</p>
+          </div>
+        </a>
+
+        <a
+          href="https://t.me/darkodekan"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border-border hover:border-accent/60 group flex items-center gap-3 rounded-xl border p-4 transition-all hover:bg-muted/30"
+        >
+          <Icon name="tabler:brand-telegram" class="size-6 text-accent" />
+          <div>
+            <p class="font-medium group-hover:text-accent">Telegram</p>
+            <p class="text-xs text-foreground/60">@darkodekan</p>
+          </div>
+        </a>
+
+        <div
+          class="border-border flex items-center gap-3 rounded-xl border p-4"
+        >
+          <Icon name="tabler:brand-discord" class="size-6 text-accent" />
+          <div>
+            <p class="font-medium">Discord</p>
+            <p class="text-xs text-foreground/60">darkodekan</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 max-w-xl">
+        <ContactForm />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

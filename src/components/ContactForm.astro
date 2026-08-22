@@ -1,0 +1,58 @@
+---
+// src/components/ContactForm.astro
+---
+<form id="contact-form" class="flex flex-col gap-4 max-w-xl">
+  <div>
+    <label for="name" class="block text-sm font-medium">Name</label>
+    <input type="text" id="name" name="name" required
+      class="mt-1 w-full rounded border border-skin-line bg-skin-fill px-3 py-2" />
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-medium">Email</label>
+    <input type="email" id="email" name="email" required
+      class="mt-1 w-full rounded border border-skin-line bg-skin-fill px-3 py-2" />
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium">Message</label>
+    <textarea id="message" name="message" rows="5" required
+      class="mt-1 w-full rounded border border-skin-line bg-skin-fill px-3 py-2"></textarea>
+  </div>
+
+  <button type="submit"
+    class="rounded bg-skin-accent px-4 py-2 text-skin-inverted font-medium">
+    Send Message
+  </button>
+
+  <p id="form-status" class="text-sm"></p>
+</form>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const status = document.getElementById("form-status")!;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    status.textContent = "Sending...";
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        status.textContent = "Message sent! I'll get back to you soon.";
+        form.reset();
+      } else {
+        status.textContent = "Something went wrong. Please try again.";
+      }
+    } catch {
+      status.textContent = "Network error. Please try again.";
+    }
+  });
+</script>
